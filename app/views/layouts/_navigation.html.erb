@@ -21,20 +21,25 @@
         <button class="btn btn-outline-success" type="submit">Search</button>
       </form>
       <ul class="navbar-nav me-5">
-       <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Nombre
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="#">Perfil</a></li>
-            <li><a class="dropdown-item" href="#">Amigos</a></li>
-            <li><a class="dropdown-item" href="#">Listas</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Ajustes</a></li>
-            
-            <li><%= button_to 'Cerrar sesión', logout_path, method: :delete, class: "dropdown-item" %></li>
-          </ul>
-        </li>
+        <% if logged_in? %>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Nombre
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="#">Perfil</a></li>
+              <li><a class="dropdown-item" href="#">Amigos</a></li>
+              <li><a class="dropdown-item" href="#">Listas</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="#">Ajustes</a></li>
+              
+              <li><%= button_to 'Cerrar sesión', logout_path, method: :delete, class: "dropdown-item" %></li>
+            </ul>
+          </li>
+        <% else %>
+          <li><%= link_to 'Iniciar sesión', login_path, class: "dropdown-item" %></li>
+          <li><%= link_to 'Registrarse', registro_path, class: "dropdown-item" %></li>
+        <% end %>
       </ul>
     </div>
   </div>
