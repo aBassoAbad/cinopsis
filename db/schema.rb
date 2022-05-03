@@ -10,13 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_04_28_092114) do
+ActiveRecord::Schema.define(version: 2022_05_03_070259) do
+
+  create_table "generos", force: :cascade do |t|
+    t.string "nombre"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "peliculas", force: :cascade do |t|
     t.string "nombre"
     t.date "fecha_estreno"
     t.text "sinopsis"
     t.string "poster"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "plataformas", force: :cascade do |t|
+    t.string "nombre"
+    t.string "foto"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

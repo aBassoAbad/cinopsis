@@ -1,0 +1,13 @@
+<div class="center list-group">
+  <% @usuarios.each do |usuario| %>
+    <ul class="list-group-item listing">
+      <div class="row">
+        <div class="col">
+          <li class="foto"><%= link_to "", usuario_path(usuario) %></li>
+          <li class="foto"><%= link_to usuario.nombre.capitalize, 
+                                         usuario_path(usuario) %></li>
+        </div>
+      </div>
+    </ul>      
+  <% end %>
+</div>
