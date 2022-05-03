@@ -2,11 +2,15 @@
   <% @usuarios.each do |usuario| %>
     <ul class="list-group-item listing">
       <div class="row">
-        <div class="col">
-          <li class="foto"><%= link_to "", usuario_path(usuario) %></li>
-          <li class="foto"><%= link_to usuario.nombre.capitalize, 
-                                         usuario_path(usuario) %></li>
-        </div>
+        <%= link_to "", usuario_path(usuario) %></li>
+        <%= link_to usuario.nombre.capitalize, 
+                                        usuario_path(usuario) %></li>
+        <% if logged_in? && (usuario_actual != usuario) %>
+          <div>
+            <%= button_to "Añadir a amigos", anadir_amigos_usuario_path(usuario), method: :post, class: "btn btn-xs btn-primary" %>
+            <%= button_to "Borrar a amigos", borrar_amigos_usuario_path(usuario), method: :delete, class: "btn btn-xs btn-danger" %>
+          </div>
+        <% end %>
       </div>
     </ul>      
   <% end %>

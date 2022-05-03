@@ -5,6 +5,14 @@ Rails.application.routes.draw do
 
   get '/registro', to: 'usuarios#new'
   resources :usuarios, except: [:new]
+  resources :usuarios do
+    member do 
+      post 'anadir_amigos'
+      delete 'borrar_amigos'
+    end
+  end
+
+  get '/amigos', to: 'friendships#index'
 
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'

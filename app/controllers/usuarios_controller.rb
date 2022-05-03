@@ -34,6 +34,16 @@ class UsuariosController < ApplicationController
         @usuarios = Usuario.all
     end
 
+    def anadir_amigos
+        amigos = Friendship.create(usuario_id: usuario_actual.id, amigo_id: params[:id])
+        redirect_back(fallback_location: root_path)
+    end
+
+    def borrar_amigos
+        amigos = Friendship.delete_by(usuario_id: usuario_actual.id, amigo_id: params[:id])
+        redirect_back(fallback_location: root_path)
+    end
+
     private 
     
     def usuario_params
