@@ -3,11 +3,16 @@
 <div class="center list-group">
   <% @listas.each do |lista| %>
     <ul class="list-group-item listing">
-      <div class="row">
+      <div class="row"> 
         <%=lista.nombre_lista.capitalize %>
-          <div>
-            <%= button_to "Borrar lista", list_path(lista), method: :delete, class: "btn btn-xs btn-danger" %>
-          </div>
+        <% if lista.peliculas.any? %>
+          <ul class="list-group list-group-horizontal">
+              <%= render lista.peliculas %>
+          </ul>
+        <% end %>
+        <div>
+          <%= button_to "Borrar lista", list_path(lista), method: :delete, class: "btn btn-xs btn-danger" %>
+        </div>
       </div>
     </ul>      
   <% end %>

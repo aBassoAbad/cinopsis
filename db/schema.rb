@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_05_04_081244) do
+ActiveRecord::Schema.define(version: 2022_05_04_092013) do
 
   create_table "friendships", force: :cascade do |t|
     t.integer "usuario_id"
@@ -23,6 +23,17 @@ ActiveRecord::Schema.define(version: 2022_05_04_081244) do
 
   create_table "generos", force: :cascade do |t|
     t.string "nombre"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "list_peliculas", force: :cascade do |t|
+    t.integer "pelicula_id"
+    t.integer "list_id"
+    t.date "fecha_vista"
+    t.integer "temporada"
+    t.integer "episodio"
+    t.string "tipo"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
