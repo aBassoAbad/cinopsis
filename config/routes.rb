@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   get 'paginas/home', to: 'paginas#home'
 
   get '/registro', to: 'usuarios#new'
+  resources :lists
   resources :usuarios, except: [:new]
   resources :usuarios do
     member do 

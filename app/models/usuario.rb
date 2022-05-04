@@ -10,4 +10,5 @@ class Usuario < ApplicationRecord
     validates :password, presence: true, length: {minimum:8}, allow_nil: true
     has_many :friendships, dependent: :destroy
     has_many :amigos, through: :friendships
+    has_many :lists, dependent: :destroy
 end

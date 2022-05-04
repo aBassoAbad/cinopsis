@@ -1,0 +1,17 @@
+<div class="row">
+  <div class="col-md-12">
+    <%= form_for(@lista, :html => {class: "form-horizontal", role: "form"}) do |f| %>
+      <div class="form-group">
+        <div class="control-label col-md-2">
+          <%= f.label :nombre_lista, "Nombre" %>
+        </div>
+        <div class="col-md-12">
+          <%= f.text_field :nombre_lista, class: "form-control", placeholder: "Introduce el nombre de la lista", autofocus: true %>
+        </div>
+      </div>
+      <div class="form-group center">
+          <%= f.submit("Create my account", class: "btn btn-primary btn-lg btn-xlarge") %>
+      </div>
+    <% end %>
+  </div>
+</div>
