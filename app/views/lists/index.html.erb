@@ -7,7 +7,7 @@
         <%=lista.nombre_lista.capitalize %>
         <% if lista.peliculas.any? %>
           <ul class="list-group list-group-horizontal">
-              <%= render lista.peliculas %>
+              <%= render lista.peliculas.order('created_at DESC') %>
           </ul>
         <% end %>
         <div>

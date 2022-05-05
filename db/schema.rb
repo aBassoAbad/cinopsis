@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_05_04_092013) do
+ActiveRecord::Schema.define(version: 2022_05_05_085329) do
 
   create_table "friendships", force: :cascade do |t|
     t.integer "usuario_id"
@@ -19,6 +19,13 @@ ActiveRecord::Schema.define(version: 2022_05_04_092013) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["amigo_id"], name: "index_friendships_on_amigo_id"
     t.index ["usuario_id"], name: "index_friendships_on_usuario_id"
+  end
+
+  create_table "genero_peliculas", force: :cascade do |t|
+    t.integer "pelicula_id"
+    t.integer "genero_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "generos", force: :cascade do |t|
@@ -30,10 +37,6 @@ ActiveRecord::Schema.define(version: 2022_05_04_092013) do
   create_table "list_peliculas", force: :cascade do |t|
     t.integer "pelicula_id"
     t.integer "list_id"
-    t.date "fecha_vista"
-    t.integer "temporada"
-    t.integer "episodio"
-    t.string "tipo"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -52,6 +55,33 @@ ActiveRecord::Schema.define(version: 2022_05_04_092013) do
     t.string "poster"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "tipo"
+  end
+
+  create_table "persona_peliculas", force: :cascade do |t|
+    t.integer "pelicula_id"
+    t.integer "persona_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "personas", force: :cascade do |t|
+    t.string "nombre"
+    t.string "departamento"
+    t.text "biografía"
+    t.date "fecha_nac"
+    t.date "fecha_fall"
+    t.string "nacionalidad"
+    t.string "foto"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "plataforma_peliculas", force: :cascade do |t|
+    t.integer "plataforma_id"
+    t.integer "pelicula_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "plataformas", force: :cascade do |t|
@@ -67,6 +97,7 @@ ActiveRecord::Schema.define(version: 2022_05_04_092013) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "password_digest"
+    t.string "foto"
   end
 
   add_foreign_key "friendships", "usuarios"
