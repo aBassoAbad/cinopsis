@@ -1,0 +1,11 @@
+<!--<%= %>
+<% @pelicula["results"].each do |pelicula| %>
+    <p>
+    <%= pelicula["name"]%>
+    <%
+        response = RestClient.get('https://pokeapi.co/api/v2/pokemon/'+pelicula["name"])
+        @sprite = JSON.parse(response)["sprites"]["front_default"]
+    %>
+    <%= @sprite %>
+    </p>
+  <% end %>-->

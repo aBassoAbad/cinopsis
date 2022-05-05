@@ -5,6 +5,7 @@ Rails.application.routes.draw do
 
   get '/registro', to: 'usuarios#new'
   resources :lists
+  resources :peliculas
   resources :usuarios, except: [:new]
   resources :usuarios do
     member do 
