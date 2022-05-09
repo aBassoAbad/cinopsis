@@ -8,7 +8,7 @@ class UsuariosController < ApplicationController
         @usuario = Usuario.new(usuario_params)
         if @usuario.save
             @lista = List.create(nombre_lista: "Vistos", usuario_id: @usuario.id)
-            redirect_to usuario_path(@usuario)
+            redirect_to root_path
         else
             render 'new'
         end
