@@ -1,0 +1,14 @@
+img{
+    height: 10px;
+    width: 10px;
+}
+a{
+    color: black;
+    text-decoration: none;
+}
+.carousel-control-prev{
+    margin-left:-10%
+}
+.carousel-control-next{
+    margin-right:-10%
+}

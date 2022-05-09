@@ -12,6 +12,7 @@
         <% end %>
         <div>
           <%= button_to "Borrar lista", list_path(lista), method: :delete, class: "btn btn-xs btn-danger" %>
+          <%= link_to "Editar lista", edit_list_path(lista), class: "btn btn-xs btn-warning" %>
         </div>
       </div>
     </ul>      

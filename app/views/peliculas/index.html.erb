@@ -1,11 +1,14 @@
 <%= %>
 <% @pelicula["results"].each do |pelicula| %>
     <p>
-    <%= pelicula["name"]%>
+    <%= pelicula["name"] %>
     <%
         response = RestClient.get('https://pokeapi.co/api/v2/pokemon/'+pelicula["name"])
         @sprite = JSON.parse(response)["sprites"]["front_default"]
+        pelicula = Pelicula.first
     %>
-    <%= @sprite %>
+    <%= link_to pelicula_path(pelicula) do %>
+        <img src="<%= @sprite %>"/> 
+    <% end %>
     </p>
   <% end %>

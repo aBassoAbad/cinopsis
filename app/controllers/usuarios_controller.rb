@@ -1,5 +1,7 @@
 class UsuariosController < ApplicationController
-    
+    before_action :set_usuario, only:[:show, :edit, :update, :destroy]
+    before_action :necesario_admin, only:[:destroy]
+    before_action :necesario_mismo_usuario, only:[:edit, :update, :destroy]
     def new
         @usuario = Usuario.new
     end
@@ -15,15 +17,12 @@ class UsuariosController < ApplicationController
     end
 
     def show
-        @usuario = Usuario.find(params[:id])
     end
 
     def edit
-        @usaurio = Usuario.find(params[:id])
     end
 
     def update
-        @usaurio = Usuario.find(params[:id])
         if @usuario.update(usuario_params)
             redirect_to @usuario
         else
@@ -49,6 +48,22 @@ class UsuariosController < ApplicationController
     
     def usuario_params
         params.require(:usuario).permit(:nombre, :email, :password, :password_confirmation)
+    end
+
+    def set_usuario
+        @usuario = Usuario.find(params[:id])
+    end
+    
+    def necesario_mismo_usuario
+        if current_chef != @chef
+            redirect_to chefs_path
+        end
+    end
+
+    def necesario_admin
+        if logged_in? & !current_chef.admin?
+            redirect_to root_path
+        end
     end
 
 end
