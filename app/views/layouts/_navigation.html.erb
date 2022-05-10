@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light ps-5">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark ps-5">
   <div class="container-fluid ms-5">
     <%= link_to 'Logo', root_path, class: "navbar-brand ms-5" %>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -18,27 +18,25 @@
       </ul>
       <form class="d-flex me-auto">
         <input class="form-control" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
       </form>
       <ul class="navbar-nav me-5">
         <% if logged_in? %>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              <%= usuario_actual.nombre%>
+              <%= usuario_actual.nombre.capitalize%>
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
               <%= link_to 'Perfil', usuario_actual, class: "dropdown-item" %></li>
               <%= link_to 'Amigos', amigos_path, class: "dropdown-item" %></li>
               <%= link_to 'Listas', lists_path, class: "dropdown-item" %></li>
               <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" href="#">Ajustes</a></li>
               
               <li><%= button_to 'Cerrar sesión', logout_path, method: :delete, class: "dropdown-item" %></li>
             </ul>
           </li>
         <% else %>
-          <li><%= link_to 'Iniciar sesión', login_path, class: "dropdown-item" %></li>
-          <li><%= link_to 'Registrarse', registro_path, class: "dropdown-item" %></li>
+          <li class="sesion"><%= link_to 'Iniciar sesión', login_path, class: "dropdown-item" %></li>
+          <li class="sesion"><%= link_to 'Registrarse', registro_path, class: "dropdown-item" %></li>
         <% end %>
       </ul>
     </div>

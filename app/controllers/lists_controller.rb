@@ -15,14 +15,17 @@ class ListsController < ApplicationController
         @lista = List.new(lista_params)
         @lista.usuario = usuario_actual
         if @lista.save
+            flash[:success] = "Se ha creado la lista correctamente"
             redirect_to list_path(@lista)
         else
+            flash[:danger] = "No se ha podido crear la lista"
             render 'new'
         end
     end
 
     def destroy
         List.find(params[:id]).destroy
+        flash[:success] = "Lista borrada correctamente"
         redirect_to lists_path
     end
 
@@ -33,8 +36,10 @@ class ListsController < ApplicationController
     def update
         @lista = List.find(params[:id])
         if @lista.update(lista_params)
+            flash[:success] = "Se ha editado la lista correctamente"
             redirect_to @lista
         else
+            flash[:danger] = "No se ha podido editar la lista"
             render 'edit'
         end
     end

@@ -6,6 +6,7 @@ class SessionsController < ApplicationController
         usuario = Usuario.find_by(email: params[:sessions][:email].downcase)
         if usuario && usuario.authenticate(params[:sessions][:password])
             session[:usuario_id] = usuario.id
+            flash[:success] = "Has iniciado sesión correctamente"
             redirect_to usuario
         else
             render 'new'
@@ -14,6 +15,7 @@ class SessionsController < ApplicationController
 
     def destroy
         session[:usuario_id] = nil
+        flash[:success] = "Has cerrado sesión correctamente"
         redirect_to root_path
     end
 end
