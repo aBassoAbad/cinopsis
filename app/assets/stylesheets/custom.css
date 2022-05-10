@@ -16,3 +16,7 @@ a{
 .sesion a{
     color: white;
 }
+
+#cerrar-mensaje{
+    float:right
+}

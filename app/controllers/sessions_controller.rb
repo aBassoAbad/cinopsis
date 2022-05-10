@@ -9,6 +9,7 @@ class SessionsController < ApplicationController
             flash[:success] = "Has iniciado sesión correctamente"
             redirect_to usuario
         else
+            flash[:danger] = "No se ha podido iniciar sesión"
             render 'new'
         end
     end

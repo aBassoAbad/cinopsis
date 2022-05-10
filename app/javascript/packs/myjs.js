@@ -1,2 +1,4 @@
-$("#cerrar-mensaje").onClick()
-$("#mensajes").fadeOut(3000);
+
+$('#cerrar-mensaje').on("click", function() {
+    $('mensajes').fadeOut(300)
+})

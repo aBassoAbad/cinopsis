@@ -13,7 +13,9 @@ class UsuariosController < ApplicationController
             flash[:success] = "Te has registrado correctamente"
             redirect_to root_path
         else
-            flash[:danger] = "Ha habido un error al registrarte"
+            @usuario.errors.each do |msg|
+                flash[:danger] = msg.full_message
+            end
             render 'new'
         end
     end
@@ -40,13 +42,13 @@ class UsuariosController < ApplicationController
 
     def anadir_amigos
         amigos = Friendship.create(usuario_id: usuario_actual.id, amigo_id: params[:id])
-        flash[:success] = Usuario.find(params[:id]).nombre.capitalize+" se ha añadido a amigos"
+        flash[:success] = "#{Usuario.find(params[:id]).nombre.capitalize} se ha añadido a amigos"
         redirect_back(fallback_location: root_path)
     end
 
     def borrar_amigos
         amigos = Friendship.delete_by(usuario_id: usuario_actual.id, amigo_id: params[:id])
-        flash[:success] = Usuario.find(params[:id]).nombre.capitalize+" se ha borrado de amigos"
+        flash[:success] = "#{Usuario.find(params[:id]).nombre.capitalize} se ha borrado de amigos"
         redirect_back(fallback_location: root_path)
     end
 
@@ -61,14 +63,14 @@ class UsuariosController < ApplicationController
     end
     
     def necesario_mismo_usuario
-        if current_chef != @chef
+        if usuario_actual != @usuario
             flash[:danger] = "No puedes realizar esa acción"
-            redirect_to chefs_path
+            redirect_to usuarios_path
         end
     end
 
     def necesario_admin
-        if logged_in? & !current_chef.admin?
+        if logged_in? & !usuario_actual.admin?
             flash[:danger] = "No puedes realizar esa acción"
             redirect_to root_path
         end
