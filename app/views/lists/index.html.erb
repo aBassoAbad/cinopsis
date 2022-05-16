@@ -4,7 +4,7 @@
   <% @listas.each do |lista| %>
     <ul class="list-group-item listing">
       <div class="row"> 
-        <%=lista.nombre_lista.capitalize %>
+        <%=link_to lista.nombre_lista.capitalize, list_path(lista) %>
         <% if lista.peliculas.any? %>
           <ul class="list-group list-group-horizontal">
               <%= render lista.peliculas.order('created_at DESC') %>

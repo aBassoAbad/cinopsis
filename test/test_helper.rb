@@ -13,4 +13,8 @@ class ActiveSupport::TestCase
   def inicio_sesion(usuario, password)
     post login_path, params: { sessions: { email: usuario.email, password: password } }
   end
+
+  def añadir_amigo(usuario)
+    post anadir_amigos_usuario_path(usuario.id)
+  end
 end

@@ -6,7 +6,7 @@ class SessionsController < ApplicationController
         usuario = Usuario.find_by(email: params[:sessions][:email].downcase)
         if usuario && usuario.authenticate(params[:sessions][:password])
             session[:usuario_id] = usuario.id
-            flash[:success] = "Has iniciado sesión correctamente"
+            flash[:success] = "Bienvenid@ de nuevo #{usuario.nombre.capitalize}"
             redirect_to usuario
         else
             flash[:danger] = "No se ha podido iniciar sesión"
