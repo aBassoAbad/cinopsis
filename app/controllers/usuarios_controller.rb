@@ -37,7 +37,7 @@ class UsuariosController < ApplicationController
     end
 
     def index
-        @usuarios = Usuario.all
+        @usuarios = Usuario.page(params[:page]).per(2)
     end
 
     def anadir_amigos

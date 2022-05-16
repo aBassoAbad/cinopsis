@@ -15,10 +15,17 @@ class UsuariosSignupTest < ActionDispatch::IntegrationTest
   end
 
   test "acepta un registro válido" do
-    get registro_path
+    get registro_path  
     assert_difference "Usuario.count" do
       post usuarios_path, params: {usuario: {nombre: "prueba", email: "prueba@correo.com", password: "contrasena", password_confirmation: "contrasena"} }
     end
     assert_redirected_to root_path
+  end
+  
+  test "crear una lista de vistos al crear un usuario" do
+    get registro_path
+    assert_difference "List.count" do
+      post usuarios_path, params: {usuario: {nombre: "prueba", email: "prueba@correo.com", password: "contrasena", password_confirmation: "contrasena"} }
+    end
   end
 end

@@ -2,6 +2,7 @@ class PeliculasController < ApplicationController
     def index
         response = RestClient.get('https://pokeapi.co/api/v2/pokemon')
         @pelicula = JSON.parse(response)
+        #@peliculas = Pelicula.all.per(20)
     end
 
     def show

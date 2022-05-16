@@ -1,6 +1,7 @@
 <%= render "shared/titulo_pagina", titulo: "Listas" %>
 <%= link_to "Crear lista", new_list_path(), class: "btn btn-xs btn-primary" %>
 <div class="center list-group">
+  <%= paginate @listas, outer_window: 3 %>
   <% @listas.each do |lista| %>
     <ul class="list-group-item listing">
       <div class="row"> 

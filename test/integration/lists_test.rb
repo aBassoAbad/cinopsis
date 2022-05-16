@@ -20,6 +20,7 @@ class ListsTest < ActionDispatch::IntegrationTest
     assert_select "a[href=?]", edit_list_path(@lista), text: "Editar lista"
     assert_select "a[href=?]", list_path(@lista2), text: @lista2.nombre_lista.capitalize
     assert_select "a[href=?]", edit_list_path(@lista2), text: "Editar lista"
+
   end
 
   test "crea una lista nueva válida" do

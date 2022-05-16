@@ -1,5 +1,6 @@
 <%= render "shared/titulo_pagina", titulo: "Usuarios" %>
 <div class="center list-group">
+  <%= paginate @usuarios, outer_window: 3 %>
   <% @usuarios.each do |usuario| %>
     <ul class="list-group-item listing grid">
       <div class="col">

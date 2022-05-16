@@ -1,6 +1,6 @@
 class ListsController < ApplicationController
     def index
-        @listas = List.where(usuario_id: usuario_actual.id)
+        @listas = List.where(usuario_id: usuario_actual.id).page(params[:page]).per(2)
     end
 
     def show
