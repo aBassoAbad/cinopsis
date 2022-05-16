@@ -12,4 +12,8 @@ class PeliculasTest < ActionDispatch::IntegrationTest
     get peliculas_path
     assert_template 'peliculas/index'
   end
+
+  test "crea nueva peliculas" do
+    get new_pelicula_path
+  end
 end
