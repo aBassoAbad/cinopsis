@@ -1,6 +1,70 @@
 <%= render "shared/titulo_pagina", titulo: "Series" %>
-<% @pelicula["results"].each do |pelicula| %>
-    <p>
-    <%= pelicula["name"]%>
-    </p>
-  <% end %>
+<% lista = @series["results"]%>
+
+  <div class="container my-5">
+  <div id="carouselExampleControls" class="carousel carousel-dark slide" data-interval="6000">
+    <div class="carousel-inner">
+
+    <!--Primer item del slider-->
+      <div class="carousel-item active">
+        <div class="row">
+          <% primeras = lista.first(4)%>
+          <% primeras.each do |serie| 
+            lista.shift
+            response = RestClient.get('https://pokeapi.co/api/v2/pokemon/'+serie["name"])
+            @sprite = JSON.parse(response)["sprites"]["front_default"]
+              %>
+            <div class="col-md-3">
+              <div class="card mb-2">
+                <%= link_to peliculas_path() do %>
+                  <img src="<%= @sprite %>" class="card-img-top"/> 
+                <% end %>
+                <div class="card-body">
+                  <h4 class="card-title"><%= serie["name"]%></h4>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+      
+    <!--Fin primer item del slider-->
+
+    <!--Resto de items del slider-->
+      <% while lista.length() > 0%>
+        <div class="carousel-item">
+          <div class="row">
+            <% primeras = lista.first(4)%>
+            <% primeras.each do |serie| 
+              lista.shift
+              response = RestClient.get('https://pokeapi.co/api/v2/pokemon/'+serie["name"])
+              @sprite = JSON.parse(response)["sprites"]["front_default"]
+              %>
+              <div class="col-md-3">
+                <div class="card mb-2">
+                  <%= link_to peliculas_path() do %>
+                    <img src="<%= @sprite %>" class="card-img-top"/> 
+                  <% end %>
+                  <div class="card-body">
+                    <h4 class="card-title"><%= serie["name"]%></h4>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    <!--Fin de los sliders-->
+
+    </div>
+    <!--Controles del slider-->
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+</div>

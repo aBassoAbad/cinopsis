@@ -11,7 +11,7 @@ class PeliculasController < ApplicationController
 
     def series
         response = RestClient.get('https://pokeapi.co/api/v2/pokemon')
-        @pelicula = JSON.parse(response)
+        @series = JSON.parse(response)
     end
 
     private
