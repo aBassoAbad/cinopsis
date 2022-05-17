@@ -67,5 +67,7 @@ class UsuarioTest < ActiveSupport::TestCase
     test "la contraseña debe tener al menos 8 caracteres" do
         @usuario.password = @usuario.password_confirmation = "a"*7
         assert_not @usuario.valid?
+        @usuario.password = @usuario.password_confirmation = "a"*8
+        assert @usuario.valid?
     end
 end

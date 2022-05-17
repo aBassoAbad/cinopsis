@@ -8,19 +8,19 @@
     <!--Primer item del slider-->
       <div class="carousel-item active">
         <div class="row">
-          <% primeras = lista.first(4)%>
+          <% primeras = lista.first(6)%>
           <% primeras.each do |serie| 
             lista.shift
             response = RestClient.get('https://pokeapi.co/api/v2/pokemon/'+serie["name"])
             @sprite = JSON.parse(response)["sprites"]["front_default"]
               %>
-            <div class="col-md-3">
+            <div class="col-md-2">
               <div class="card mb-2">
                 <%= link_to peliculas_path() do %>
                   <img src="<%= @sprite %>" class="card-img-top"/> 
                 <% end %>
                 <div class="card-body">
-                  <h4 class="card-title"><%= serie["name"]%></h4>
+                  <h6 class="card-title"><%= serie["name"]%></h6>
                 </div>
               </div>
             </div>
@@ -34,19 +34,19 @@
       <% while lista.length() > 0%>
         <div class="carousel-item">
           <div class="row">
-            <% primeras = lista.first(4)%>
+            <% primeras = lista.first(6)%>
             <% primeras.each do |serie| 
               lista.shift
               response = RestClient.get('https://pokeapi.co/api/v2/pokemon/'+serie["name"])
               @sprite = JSON.parse(response)["sprites"]["front_default"]
               %>
-              <div class="col-md-3">
+              <div class="col-md-2">
                 <div class="card mb-2">
                   <%= link_to peliculas_path() do %>
                     <img src="<%= @sprite %>" class="card-img-top"/> 
                   <% end %>
                   <div class="card-body">
-                    <h4 class="card-title"><%= serie["name"]%></h4>
+                    <h6 class="card-title"><%= serie["name"]%></h6>
                   </div>
                 </div>
               </div>
