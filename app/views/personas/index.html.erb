@@ -4,6 +4,7 @@
   <div class="container my-5">
   <div id="carouselExampleControls" class="carousel carousel-dark slide" data-interval="6000">
     <div class="carousel-inner">
+    <!--Primer slider-->
       <div class="carousel-item active">
       <div class="row">
         <% primeras = lista.first(6)%>
@@ -25,9 +26,9 @@
         <% end %>
         </div>
       </div>
-        <!--/.First slide-->
-        <!--Second slide-->
-        <% while lista.length() > 0%>
+        <!--Fin del primer slider-->
+        <!--Resto de Sliders-->
+        <% while lista.length() > 0 %>
       <div class="carousel-item">
         <div class="row">
         <% primeras = lista.first(6)%>
@@ -50,7 +51,7 @@
         </div>
       </div>
       <% end %>
-        <!--/.Second slide-->
+        <!--Findel resto de sliders-->
     </div>
     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
