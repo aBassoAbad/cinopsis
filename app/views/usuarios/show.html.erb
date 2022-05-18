@@ -9,6 +9,19 @@
         <li class="nav-item ">
             <%= link_to 'Amigos', amigos_path, class: "nav-link" %>
         </li>
+        <% if logged_in? && (usuario_actual != @usuario) %>
+          <div>
+          <% if !Friendship.find_by(usuario_id: usuario_actual.id, amigo_id: @usuario.id) %>
+            <li class="nav-item me-2">
+                <%= link_to "Añadir a amigos", anadir_amigos_usuario_path(@usuario), method: :post, class: "nav-link text-primary" %>
+            </li>
+          <% else %>
+            <li class="nav-item me-2">
+                <%= link_to "Borrar de amigos", borrar_amigos_usuario_path(@usuario), method: :delete, class: "nav-link text-danger" %>
+            </li>
+          <% end %>
+          </div>
+        <% end %>
         </ul>
     </div>
 </nav>

@@ -48,4 +48,13 @@ class ListsTest < ActionDispatch::IntegrationTest
     end
     assert_template 'lists/new'
   end
+
+  test "rechaza lista con el mismo nombre que otra del usuario" do
+    get new_list_path
+    assert_template 'lists/new'
+    assert_no_difference 'List.count' do
+      post lists_path, params: {list: {nombre_lista: "favoritas"}}
+    end
+    assert_template 'lists/new'
+  end
 end
