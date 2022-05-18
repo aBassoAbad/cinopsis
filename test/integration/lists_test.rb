@@ -57,4 +57,5 @@ class ListsTest < ActionDispatch::IntegrationTest
     end
     assert_template 'lists/new'
   end
+  
 end

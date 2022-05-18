@@ -17,7 +17,7 @@ class UsuariosListadoTest < ActionDispatch::IntegrationTest
     inicio_sesion(@usuario, "contrasena")
     get usuarios_path
     assert_template 'usuarios/index'
-    assert_no_difference 'Usuario.count' do
+    assert_difference 'Friendship.count' do
       post anadir_amigos_usuario_path(@usuario2.id)
     end
     assert_redirected_to root_path

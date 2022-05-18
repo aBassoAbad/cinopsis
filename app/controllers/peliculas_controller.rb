@@ -21,6 +21,6 @@ class PeliculasController < ApplicationController
     end
 
     def set_pelicula
-        @pelicula = Pelicula.find(parmas[:id])
+        @pelicula = Pelicula.find(params[:id])
     end
 end

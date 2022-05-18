@@ -17,4 +17,8 @@ class ActiveSupport::TestCase
   def añadir_amigo(usuario)
     post anadir_amigos_usuario_path(usuario.id)
   end
+
+  def borrar_amigo(usuario)
+    delete borrar_amigos_usuario_path(usuario.id)
+  end
 end

@@ -24,8 +24,13 @@ class ListsController < ApplicationController
     end
 
     def destroy
-        List.find(params[:id]).destroy
-        flash[:success] = "Lista borrada correctamente"
+        @lista = List.find(params[:id])
+        if @lista.nombre_lista != "Vistos"
+            @lista.destroy
+            flash[:success] = "Lista borrada correctamente"
+        else
+            flash[:danger] = "Esta lista no se puede borrar"
+        end
         redirect_to lists_path
     end
 
