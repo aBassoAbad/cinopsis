@@ -14,6 +14,7 @@ class PeliculasController < ApplicationController
         @series = JSON.parse(response)
     end
 
+    
     private
 
     def pelicula_params

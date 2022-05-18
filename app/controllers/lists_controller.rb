@@ -49,6 +49,10 @@ class ListsController < ApplicationController
         end
     end
 
+    def anadir_pelicula
+        @lista = List.find(params[:id])
+    end
+
     private 
     
     def lista_params

@@ -18,7 +18,7 @@ class UsuariosListadoTest < ActionDispatch::IntegrationTest
     get usuarios_path
     assert_template 'usuarios/index'
     assert_difference 'Friendship.count' do
-      post anadir_amigos_usuario_path(@usuario2.id)
+      añadir_amigo(@usuario2)
     end
     assert_redirected_to root_path
   end
@@ -27,11 +27,11 @@ class UsuariosListadoTest < ActionDispatch::IntegrationTest
     inicio_sesion(@usuario, "contrasena")
     get usuarios_path
     assert_template 'usuarios/index'
-    assert_no_difference 'Usuario.count' do
-      post anadir_amigos_usuario_path(@usuario2.id)
+    assert_difference 'Friendship.count' do
+      añadir_amigo(@usuario2)
     end
-    assert_no_difference 'Usuario.count' do
-      delete borrar_amigos_usuario_path(@usuario2.id)
+    assert_difference 'Friendship.count', -1 do
+      borrar_amigo(@usuario2)
     end
     assert_redirected_to root_path
   end

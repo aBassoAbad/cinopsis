@@ -29,7 +29,7 @@ class ListsEditTest < ActionDispatch::IntegrationTest
     assert_not flash.empty?
   end
 
-  test "rechaza lista con el mismo nombre que otra del usuario" do
+  test "rechaza editar lista con el mismo nombre que otra lista del usuario" do
     get edit_list_path(@lista)
     assert_template 'lists/edit'
     assert_no_difference 'List.count' do
@@ -44,7 +44,7 @@ class ListsEditTest < ActionDispatch::IntegrationTest
     get edit_list_path(@lista)
     assert_template 'lists/edit'
     assert_no_difference 'List.count' do
-      patch list_path(@lista), params: {list: {nombre_lista: "nuevo"}}
+      patch list_path(@lista), params: {list: {nombre_lista: "nombre_valido"}}
     end
     assert_template 'lists/edit'
     assert_not flash.empty?
