@@ -1,27 +1,33 @@
 <%= render "shared/titulo_pagina", titulo: @usuario.nombre %>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light ps-5">
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav">
-        <li class="nav-item me-2">
-            <%= link_to 'Listas', lists_path, class: "nav-link" %>
-        </li>
-        <li class="nav-item ">
-            <%= link_to 'Amigos', amigos_path, class: "nav-link" %>
-        </li>
-        <% if logged_in? && (usuario_actual != @usuario) %>
-          <div>
-          <% if !Friendship.find_by(usuario_id: usuario_actual.id, amigo_id: @usuario.id) %>
-            <li class="nav-item me-2">
-                <%= link_to "Añadir a amigos", anadir_amigos_usuario_path(@usuario), method: :post, class: "nav-link text-primary" %>
-            </li>
-          <% else %>
-            <li class="nav-item me-2">
-                <%= link_to "Borrar de amigos", borrar_amigos_usuario_path(@usuario), method: :delete, class: "nav-link text-danger" %>
-            </li>
-          <% end %>
-          </div>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav">
+      <li class="nav-item me-2">
+        <%= link_to 'Listas', lists_path, class: "nav-link" %>
+      </li>
+      <li class="nav-item ">
+        <%= link_to 'Amigos', amigos_path, class: "nav-link" %>
+      </li>
+      <% if logged_in? && (usuario_actual != @usuario) %>
+        <div>
+        <% if !Friendship.find_by(usuario_id: usuario_actual.id, amigo_id: @usuario.id) %>
+          <li class="nav-item me-2">
+            <%= link_to "Añadir a amigos", anadir_amigos_usuario_path(@usuario), method: :post, class: "nav-link text-primary" %>
+          </li>
+        <% else %>
+          <li class="nav-item me-2">
+            <%= link_to "Borrar de amigos", borrar_amigos_usuario_path(@usuario), method: :delete, class: "nav-link text-danger" %>
+          </li>
         <% end %>
-        </ul>
-    </div>
+        </div>
+      <% end %>
+    </ul>
+  </div>
 </nav>
+
+<p>
+Películas vistas: <%= Pelicula.joins(:lists).where("lists.usuario_id"=>@usuario.id).where("lists.nombre_Lista" => "Vistos").count%>
+Siguiendo: <%= Friendship.where("usuario_id" => @usuario.id).count %>
+Seguidores: <%= Friendship.where("amigo_id" => @usuario.id).count %>
+</p>

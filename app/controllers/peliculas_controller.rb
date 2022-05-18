@@ -1,4 +1,5 @@
 class PeliculasController < ApplicationController
+    before_action :set_pelicula, only:[:show]
     def index
         response = RestClient.get('https://pokeapi.co/api/v2/pokemon?limit=60')
         @pelicula = JSON.parse(response)
@@ -6,7 +7,6 @@ class PeliculasController < ApplicationController
     end
 
     def show
-
     end
 
     def series
@@ -18,5 +18,9 @@ class PeliculasController < ApplicationController
 
     def pelicula_params
         params.require(:pelicula).permit(:nombre, :fecha_estreno, :sinopsis, :poster, :tipo)
+    end
+
+    def set_pelicula
+        @pelicula = Pelicula.find(parmas[:id])
     end
 end

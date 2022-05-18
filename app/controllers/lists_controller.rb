@@ -35,7 +35,7 @@ class ListsController < ApplicationController
 
     def update
         @lista = List.find(params[:id])
-        if @lista.update(lista_params)
+        if @lista.nombre_lista != "Vistos" && @lista.update(lista_params)
             flash[:success] = "Se ha editado la lista correctamente"
             redirect_to @lista
         else
