@@ -1,49 +1,25 @@
 <%= render "shared/titulo_pagina", titulo: "Películas" %>
 <% lista = @pelicula["results"]%>
-
+<% populares = @peliculas["results"]%>
+<div>
   <div class="container my-5">
-  <div id="carouselExampleControls" class="carousel carousel-dark slide" data-interval="6000">
-    <div class="carousel-inner">
+    <div id="carousel1" class="carousel carousel-dark slide" data-interval="false">
+      <div class="carousel-inner">
 
-    <!--Primer item del slider-->
-      <div class="carousel-item active">
-        <div class="row">
-          <% primeras = lista.first(6)%>
-          <% primeras.each do |pelicula| 
-            lista.shift
-            response = RestClient.get('https://pokeapi.co/api/v2/pokemon/'+pelicula["name"])
-            @sprite = JSON.parse(response)["sprites"]["front_shiny"]
-              %>
-            <div class="col-md-2">
-              <div class="card mb-2">
-                <%= link_to peliculas_path() do %>
-                  <%= image_tag url_for(@sprite), class: "card-img-top" %>
-                <% end %>
-                <div class="card-body">
-                  <h6 class="card-title"><%= pelicula["name"]%></h6>
-                </div>
-              </div>
-            </div>
-          <% end %>
-        </div>
-      </div>
-      
-    <!--Fin primer item del slider-->
-
-    <!--Resto de items del slider-->
-      <% while lista.length() > 0%>
-        <div class="carousel-item">
+        <!--Primer item del slider-->
+        <div class="carousel-item active">
           <div class="row">
             <% primeras = lista.first(6)%>
-            <% primeras.each do |pelicula| 
-              lista.shift
+            <% primeras.each do |pelicula| %>
+              <%lista.shift
               response = RestClient.get('https://pokeapi.co/api/v2/pokemon/'+pelicula["name"])
               @sprite = JSON.parse(response)["sprites"]["front_shiny"]
-              %>
+                %>
               <div class="col-md-2">
                 <div class="card mb-2">
-                  <%= link_to peliculas_path() do %>
-                  <%= image_tag url_for(@sprite), class: "card-img-top" %>
+                  <%= link_to pelicula_path(pelicula["name"]) do %>
+                    <% params[:parametro] = pelicula["name"]%>
+                    <%= image_tag url_for(@sprite), class: "card-img-top" %>
                   <% end %>
                   <div class="card-body">
                     <h6 class="card-title"><%= pelicula["name"]%></h6>
@@ -53,18 +29,116 @@
             <% end %>
           </div>
         </div>
-      <% end %>
-    <!--Fin de los items-->
+        
+        <!--Fin primer item del slider-->
 
+        <!--Resto de items del slider-->
+        <% while lista.length() > 0%>
+          <div class="carousel-item">
+            <div class="row">
+              <% primeras = lista.first(6)%>
+              <% primeras.each do |pelicula| 
+                lista.shift
+                response = RestClient.get('https://pokeapi.co/api/v2/pokemon/'+pelicula["name"])
+                @sprite = JSON.parse(response)["sprites"]["front_shiny"]
+                %>
+                <div class="col-md-2">
+                  <div class="card mb-2">
+                    <%= link_to pelicula_path(1) do %>
+                    <%= image_tag url_for(@sprite), class: "card-img-top" %>
+                    <% end %>
+                    <div class="card-body">
+                      <h6 class="card-title"><%= pelicula["name"]%></h6>
+                    </div>
+                  </div>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+        <!--Fin de los items-->
+
+      </div>
+      <!--Controles del slider-->
+      <button class="carousel-control-prev" type="button" data-bs-target="#carousel1" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carousel1" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
     </div>
-    <!--Controles del slider-->
-    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Next</span>
-    </button>
+  </div>
+  
+</div>
+<div>
+<h4>Películas populares</h4>
+  <div class="container">
+    <div id="carousel2" class="carousel carousel-dark slide" data-interval="false">
+      <div class="carousel-inner">
+
+        <!--Primer item del slider-->
+        <div class="carousel-item active">
+          <div class="row">
+            <% primeras = populares.first(6)%>
+            <% primeras.each do |pelicula| 
+              populares.shift
+              response = RestClient.get('https://pokeapi.co/api/v2/pokemon/'+pelicula["name"])
+              @sprite = JSON.parse(response)["sprites"]["front_shiny"]
+                %>
+              <div class="col-md-2">
+                <div class="card mb-2">
+                  <%= link_to peliculas_path() do %>
+                    <%= image_tag url_for(@sprite), class: "card-img-top" %>
+                  <% end %>
+                  <div class="card-body">
+                    <h6 class="card-title"><%= pelicula["name"]%></h6>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </div>
+        
+        <!--Fin primer item del slider-->
+
+        <!--Resto de items del slider-->
+        <% while populares.length() > 0%>
+          <div class="carousel-item">
+            <div class="row">
+              <% primeras = populares.first(6)%>
+              <% primeras.each do |pelicula| 
+                populares.shift
+                response = RestClient.get('https://pokeapi.co/api/v2/pokemon/'+pelicula["name"])
+                @sprite = JSON.parse(response)["sprites"]["front_shiny"]
+                %>
+                <div class="col-md-2">
+                  <div class="card mb-2">
+                    <%= link_to peliculas_path() do %>
+                    <%= image_tag url_for(@sprite), class: "card-img-top" %>
+                    <% end %>
+                    <div class="card-body">
+                      <h6 class="card-title"><%= pelicula["name"]%></h6>
+                    </div>
+                  </div>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+        <!--Fin de los items-->
+
+      </div>
+      <!--Controles del slider-->
+      <button class="carousel-control-prev" type="button" data-bs-target="#carousel2" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carousel2" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
   </div>
 </div>
