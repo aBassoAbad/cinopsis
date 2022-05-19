@@ -7,7 +7,7 @@
         <%= link_to amigo.nombre.capitalize, 
                                         usuario_path(amigo) %></li>
           <div>
-            <%= button_to "Borrar a amigos", borrar_amigos_usuario_path(amigo), method: :delete, class: "btn btn-xs btn-danger" %>
+            <%= button_to t(:borrar_amigos), borrar_amigos_usuario_path(amigo), method: :delete, class: "btn btn-xs btn-danger" %>
           </div>
       </div>
     </ul>      

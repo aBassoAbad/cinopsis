@@ -7,17 +7,24 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item me-auto">
-          <%= link_to 'Películas', peliculas_path, class: "nav-link" %>
+          <%= link_to t(:peliculas), peliculas_path, class: "nav-link" %>
         </li>
         <li class="nav-item me-auto">
-          <%= link_to 'Series', series_path, class: "nav-link" %>
+          <%= link_to t(:series), series_path, class: "nav-link" %>
         </li>
         <li class="nav-item me-auto">
-          <%= link_to 'Usuarios', usuarios_path, class: "nav-link" %>
+          <%= link_to t(:usuarios), usuarios_path, class: "nav-link" %>
         </li>
+        <li class="nav-item me-auto">
+          <%= link_to "Español", "#", class: "nav-link" %>
+        </li>
+        <li class="nav-item me-auto">
+          <%= link_to "English", "#", class: "nav-link" %>
+        </li>
+
       </ul>
       <form class="d-flex me-auto">
-        <input class="form-control" type="search" placeholder="Search" aria-label="Search">
+        <input class="form-control" type="search" placeholder="<%=t(:buscar)%>" aria-label="Search">
       </form>
       <ul class="navbar-nav me-5">
         <% if logged_in? %>
@@ -26,17 +33,17 @@
               <%= usuario_actual.nombre.capitalize%>
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <%= link_to 'Perfil', usuario_actual, class: "dropdown-item" %></li>
-              <%= link_to 'Amigos', amigos_path, class: "dropdown-item" %></li>
-              <%= link_to 'Listas', lists_path, class: "dropdown-item" %></li>
+              <%= link_to t(:perfil), usuario_actual, class: "dropdown-item" %></li>
+              <%= link_to t(:amigos), amigos_path, class: "dropdown-item" %></li>
+              <%= link_to t(:listas), lists_path, class: "dropdown-item" %></li>
               <li><hr class="dropdown-divider"></li>
               
-              <li><%= button_to 'Cerrar sesión', logout_path, method: :delete, class: "dropdown-item" %></li>
+              <li><%= button_to t(:cerrar_sesion), logout_path, method: :delete, class: "dropdown-item" %></li>
             </ul>
           </li>
         <% else %>
-          <li class="sesion"><%= link_to 'Iniciar sesión', login_path, class: "dropdown-item" %></li>
-          <li class="sesion"><%= link_to 'Registrarse', registro_path, class: "dropdown-item" %></li>
+          <li class="sesion"><%= link_to t(:iniciar_sesion), login_path, class: "dropdown-item" %></li>
+          <li class="sesion"><%= link_to t(:registrar), registro_path, class: "dropdown-item" %></li>
         <% end %>
       </ul>
     </div>

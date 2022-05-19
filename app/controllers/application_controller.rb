@@ -1,4 +1,5 @@
-class ApplicationController < ActionController::Base
+class ApplicationController < ActionController::Base  
+    before_action :set_locale
     helper_method :usuario_actual, :logged_in?
 
     def usuario_actual
@@ -14,4 +15,10 @@ class ApplicationController < ActionController::Base
             redirect_to root_path
         end
     end
+
+    private
+    def set_locale
+      I18n.locale = "es"
+    end
+
 end

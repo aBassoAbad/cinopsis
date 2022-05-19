@@ -1,18 +1,17 @@
-<%= render "shared/titulo_pagina", titulo: "Usuarios" %>
+<%= render "shared/titulo_pagina", titulo: t(:usuarios) %>
 <div class="center list-group">
   <%= paginate @usuarios, outer_window: 3 %>
   <% @usuarios.each do |usuario| %>
     <ul class="list-group-item listing grid">
       <div class="col">
-        <%= link_to "", usuario_path(usuario) %></li>
         <%= link_to usuario.nombre.capitalize, 
                                         usuario_path(usuario) %></li>
         <% if logged_in? && (usuario_actual != usuario) %>
           <div>
           <% if !Friendship.find_by(usuario_id: usuario_actual.id, amigo_id: usuario.id) %>
-            <%= button_to "Añadir a amigos", anadir_amigos_usuario_path(usuario), method: :post, class: "btn btn-xs btn-primary" %>
+            <%= button_to t(:anadir_amigos), anadir_amigos_usuario_path(usuario), method: :post, class: "btn btn-xs btn-primary" %>
           <% else %>
-            <%= button_to "Borrar a amigos", borrar_amigos_usuario_path(usuario), method: :delete, class: "btn btn-xs btn-danger" %>
+            <%= button_to t(:borrar_amigos), borrar_amigos_usuario_path(usuario), method: :delete, class: "btn btn-xs btn-danger" %>
           <% end %>
           </div>
         <% end %>

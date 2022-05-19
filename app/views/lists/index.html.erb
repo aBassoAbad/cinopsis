@@ -1,5 +1,5 @@
-<%= render "shared/titulo_pagina", titulo: "Listas" %>
-<%= link_to "Crear lista", new_list_path(), class: "btn btn-xs btn-primary" %>
+<%= render "shared/titulo_pagina", titulo: t(:listas) %>
+<%= link_to t(:crear_lista), new_list_path(), class: "btn btn-xs btn-primary" %>
 <div class="center list-group">
   <%= paginate @listas, outer_window: 3 %>
   <% @listas.each do |lista| %>
@@ -13,8 +13,8 @@
         <% end %>
         <div>
           <% if lista.nombre_lista != "Vistos" %>
-            <%= button_to "Borrar lista", list_path(lista), method: :delete, class: "btn btn-xs btn-danger" %>
-            <%= link_to "Editar lista", edit_list_path(lista), class: "btn btn-xs btn-warning" %>
+            <%= button_to t(:borrar_lista), list_path(lista), method: :delete, class: "btn btn-xs btn-danger" %>
+            <%= link_to t(:editar_lista), edit_list_path(lista), class: "btn btn-xs btn-warning" %>
           <% end %>
         </div>
       </div>

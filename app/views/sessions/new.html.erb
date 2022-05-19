@@ -1,4 +1,4 @@
-<%= render "shared/titulo_pagina", titulo: "Iniciar sesión" %>
+<%= render "shared/titulo_pagina", titulo: t(:iniciar_sesion) %>
 <div class="row">
   <div class="col-md-12">
     <%= form_for(:sessions, :html => {class: "form-horizontal", role: "form"}, url: login_path) do |f| %>
@@ -7,7 +7,7 @@
           <%= f.label :email %>
         </div>
         <div class="col-md-12">
-          <%= f.text_field :email, class: "form-control", placeholder: "Introduce tu email" %>
+          <%= f.text_field :email, class: "form-control", placeholder: t(:introduce_email) %>
         </div>
       </div>
       <div class="form-group mt-3">
@@ -15,11 +15,11 @@
           <%= f.label :password %>
         </div>
         <div class="col-md-12">
-          <%= f.password_field :password, class: "form-control", placeholder: "Introduce tu contraseña" %>
+          <%= f.password_field :password, class: "form-control", placeholder: t(:introduce_contrasena) %>
         </div>
       </div>
       <div class="form-group center mt-4">
-          <%= f.submit("Iniciar sesión", class: "btn btn-primary btn-lg btn-xlarge") %>
+          <%= f.submit(t(:iniciar_sesion), class: "btn btn-primary btn-lg btn-xlarge") %>
       </div>
     <% end %>
   </div>

@@ -3,14 +3,14 @@
     <%= form_for(@lista, :html => {class: "form-horizontal", role: "form"}) do |f| %>
       <div class="form-group">
         <div class="control-label col-md-2">
-          <%= f.label :nombre_lista, "Nombre" %>
+          <%= f.label :nombre_lista, t(:nombre) %>
         </div>
         <div class="col-md-12">
-          <%= f.text_field :nombre_lista, class: "form-control", placeholder: "Introduce el nombre de la lista", autofocus: true %>
+          <%= f.text_field :nombre_lista, class: "form-control", placeholder: t(:introduce_lista), autofocus: true %>
         </div>
       </div>
       <div class="form-group center">
-          <%= f.submit("Crear una lista nueva", class: "btn btn-primary btn-lg btn-xlarge") %>
+          <%= f.submit(t(:crear_lista), class: "btn btn-primary btn-lg btn-xlarge") %>
       </div>
     <% end %>
   </div>

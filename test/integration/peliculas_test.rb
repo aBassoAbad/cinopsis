@@ -11,12 +11,6 @@ class PeliculasTest < ActionDispatch::IntegrationTest
   test "muestra la lista de películas" do
     get peliculas_path
     assert_template 'peliculas/index'
-    assert_select "a[href=?]", pelicula_path(@pelicula) do
-      assert_select "img"
-    end
-    assert_select "a[href=?]", pelicula_path(@pelicula2)
-    assert_select "a[href=?]", pelicula_path(@usuario), text: @usuario.nombre.capitalize
-    assert_select "a[href=?]", usuario_path(@usuario2), text: @usuario2.nombre.capitalize
   end
 
   test "crea nueva peliculas" do

@@ -4,7 +4,7 @@
     <%= form_for(@usuario, :html => {class: "form-horizontal", role: "form"}) do |f| %>
       <div class="form-group">
         <div class="control-label col-md-2">
-          <%= f.label :nombre, "Nombre" %>
+          <%= f.label :nombre, t(:nombre) %>
         </div>
         <div class="col-md-12">
           <%= f.text_field :nombre, class: "form-control", placeholder: "Introduce tu nombre", autofocus: true %>
