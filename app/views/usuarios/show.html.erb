@@ -27,11 +27,11 @@
 </nav>
 
 <p>
-Películas vistas: <%= Pelicula.joins(:lists).where("lists.usuario_id"=>@usuario.id).where("lists.nombre_Lista" => "Vistos").count%>
+<%= t(:pelis_vistas) %> <%= Pelicula.joins(:lists).where("lists.usuario_id"=>@usuario.id).where("lists.nombre_Lista" => "Vistos").count%>
 </p>
 <p>
-Siguiendo: <%= Friendship.where("usuario_id" => @usuario.id).count %>
+<%= t(:siguiendo) %> <%= Friendship.where("usuario_id" => @usuario.id).count %>
 </p>
 <p>
-Seguidores: <%= Friendship.where("amigo_id" => @usuario.id).count %>
+<%= t(:seguidores) %> <%= Friendship.where("amigo_id" => @usuario.id).count %>
 </p>

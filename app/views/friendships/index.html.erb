@@ -3,12 +3,10 @@
   <% @amigos.each do |amigo| %>
     <ul class="list-group-item listing">
       <div class="row">
-        <%= link_to "", usuario_path(amigo) %></li>
-        <%= link_to amigo.nombre.capitalize, 
-                                        usuario_path(amigo) %></li>
-          <div>
-            <%= button_to t(:borrar_amigos), borrar_amigos_usuario_path(amigo), method: :delete, class: "btn btn-xs btn-danger" %>
-          </div>
+        <%= link_to amigo.nombre.capitalize, usuario_path(amigo) %></li>
+        <div>
+          <%= button_to t(:borrar_amigos), borrar_amigos_usuario_path(amigo), method: :delete, class: "btn btn-xs btn-danger" %>
+        </div>
       </div>
     </ul>      
   <% end %>

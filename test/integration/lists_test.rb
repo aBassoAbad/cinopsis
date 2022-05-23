@@ -19,9 +19,9 @@ class ListsTest < ActionDispatch::IntegrationTest
     get lists_path
     assert_template 'lists/index'
     assert_select "a[href=?]", list_path(@lista), text: @lista.nombre_lista.capitalize
-    assert_select "a[href=?]", edit_list_path(@lista), text: "Editar lista"
+    assert_select "a[href=?]", edit_list_path(@lista)
     assert_select "a[href=?]", list_path(@lista2), text: @lista2.nombre_lista.capitalize
-    assert_select "a[href=?]", edit_list_path(@lista2), text: "Editar lista", count: 0
+    assert_select "a[href=?]", edit_list_path(@lista2), count: 0
     
     assert_template :partial => '_pelicula', :count => 3
   end

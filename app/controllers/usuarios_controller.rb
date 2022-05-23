@@ -10,7 +10,7 @@ class UsuariosController < ApplicationController
         @usuario = Usuario.new(usuario_params)
         if @usuario.save
             @lista = List.create(nombre_lista: "Vistos", usuario_id: @usuario.id)
-            flash[:success] = "Te has registrado correctamente"
+            flash[:success] = t(:registro_correcto)
             redirect_to root_path
         else
             @usuario.errors.each do |msg|
@@ -28,10 +28,10 @@ class UsuariosController < ApplicationController
 
     def update
         if @usuario.update(usuario_params)
-            flash[:success] = "Se ha editado el usuario correctamente"
+            flash[:success] = t(:edicion_usuario_correcto)
             redirect_to @usuario
         else
-            flash[:danger] = "No se ha podido editar el usuario"
+            flash[:danger] = t(:edicion_usuario_error)
             render 'edit'
         end
     end
@@ -42,13 +42,13 @@ class UsuariosController < ApplicationController
 
     def anadir_amigos
         amigos = Friendship.create(usuario_id: usuario_actual.id, amigo_id: params[:id])
-        flash[:success] = "#{Usuario.find(params[:id]).nombre.capitalize} se ha añadido a amigos"
+        flash[:success] = Usuario.find(params[:id]).nombre.capitalize+ t(:anadido_a_amigos)
         redirect_back(fallback_location: root_path)
     end
 
     def borrar_amigos
         amigos = Friendship.delete_by(usuario_id: usuario_actual.id, amigo_id: params[:id])
-        flash[:success] = "#{Usuario.find(params[:id]).nombre.capitalize} se ha borrado de amigos"
+        flash[:success] = Usuario.find(params[:id]).nombre.capitalize+ t(:borrado_de_amigos)
         redirect_back(fallback_location: root_path)
     end
 
@@ -64,14 +64,14 @@ class UsuariosController < ApplicationController
     
     def necesario_mismo_usuario
         if usuario_actual != @usuario
-            flash[:danger] = "No puedes realizar esa acción"
+            flash[:danger] = t(:accion_invalidada)
             redirect_to usuarios_path
         end
     end
 
     def necesario_admin
         if logged_in? & !usuario_actual.admin?
-            flash[:danger] = "No puedes realizar esa acción"
+            flash[:danger] = t(:accion_invalidada)
             redirect_to root_path
         end
     end

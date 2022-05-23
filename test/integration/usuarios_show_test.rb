@@ -9,8 +9,8 @@ class UsuariosShowTest < ActionDispatch::IntegrationTest
   test "accede al perfil de un usuario cuando no está logueado" do
     get usuario_path(@usuario)
     assert_template 'usuarios/show'
-    assert_select "a[href=?]", lists_path, text: "Listas"
-    assert_select "a[href=?]", amigos_path, text: "Amigos"
+    assert_select "a[href=?]", lists_path
+    assert_select "a[href=?]", amigos_path
     assert_select "a[href=?]", anadir_amigos_usuario_path(@usuario), count: 0
     assert_select "a[href=?]", borrar_amigos_usuario_path(@usuario), count: 0
   end
@@ -19,8 +19,8 @@ class UsuariosShowTest < ActionDispatch::IntegrationTest
     inicio_sesion(@usuario, "contrasena")
     get usuario_path(@usuario)
     assert_template 'usuarios/show'
-    assert_select "a[href=?]", lists_path, text: "Listas"
-    assert_select "a[href=?]", amigos_path, text: "Amigos"
+    assert_select "a[href=?]", lists_path
+    assert_select "a[href=?]", amigos_path
     assert_select "a[href=?]", anadir_amigos_usuario_path(@usuario), count: 0
     assert_select "a[href=?]", borrar_amigos_usuario_path(@usuario), count: 0
   end
@@ -29,8 +29,8 @@ class UsuariosShowTest < ActionDispatch::IntegrationTest
     inicio_sesion(@usuario, "contrasena")
     get usuario_path(@usuario2)
     assert_template 'usuarios/show'
-    assert_select "a[href=?]", lists_path, text: "Listas"
-    assert_select "a[href=?]", amigos_path, text: "Amigos"
+    assert_select "a[href=?]", lists_path
+    assert_select "a[href=?]", amigos_path
     assert_select "a[href=?]", anadir_amigos_usuario_path(@usuario2)
     assert_select "a[href=?]", borrar_amigos_usuario_path(@usuario2), count: 0
     assert_difference 'Friendship.count' do
@@ -46,8 +46,8 @@ class UsuariosShowTest < ActionDispatch::IntegrationTest
     añadir_amigo(@usuario2)
     get usuario_path(@usuario2)
     assert_template 'usuarios/show'
-    assert_select "a[href=?]", lists_path, text: "Listas"
-    assert_select "a[href=?]", amigos_path, text: "Amigos"
+    assert_select "a[href=?]", lists_path
+    assert_select "a[href=?]", amigos_path
     assert_select "a[href=?]", anadir_amigos_usuario_path(@usuario2), count: 0
     assert_select "a[href=?]", borrar_amigos_usuario_path(@usuario2)
     assert_difference 'Friendship.count', -1 do
