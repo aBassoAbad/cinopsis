@@ -15,13 +15,15 @@
         <li class="nav-item me-auto">
           <%= link_to t(:usuarios), usuarios_path, class: "nav-link" %>
         </li>
-        <li class="nav-item me-auto">
-          <%= link_to "Español", "#", class: "nav-link" %>
-        </li>
-        <li class="nav-item me-auto">
-          <%= link_to "English", "#", class: "nav-link" %>
-        </li>
-
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <%= t(:idioma) %>
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <span class="dropdown-item"><%= t(:espanol) %> <%= link_to image_tag(asset_path('iconos/spain.png')), {:locale => 'es'}, class: "bandera"%></span>
+              <span class="dropdown-item"><%= t(:ingles) %> <%= link_to image_tag(asset_path('iconos/united-kingdom.png')), {:locale => 'en'}, class: "bandera"%></span>
+              </ul>
+          </li>
       </ul>
       <form class="d-flex me-auto">
         <input class="form-control" type="search" placeholder="<%=t(:buscar)%>" aria-label="Search">
