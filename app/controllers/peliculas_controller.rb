@@ -1,8 +1,8 @@
 class PeliculasController < ApplicationController
     def index
-        response = RestClient.get('https://pokeapi.co/api/v2/pokemon?limit=6')
+        response = RestClient.get('https://pokeapi.co/api/v2/pokemon?limit=12')
         @pelicula = JSON.parse(response)
-        response = RestClient.get('https://pokeapi.co/api/v2/pokemon?limit=6&offset=6')
+        response = RestClient.get('https://pokeapi.co/api/v2/pokemon?limit=12&offset=12')
         @peliculas = JSON.parse(response)
         #@peliculas = Pelicula.all.per(20)
     end

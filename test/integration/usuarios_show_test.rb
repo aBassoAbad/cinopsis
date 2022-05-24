@@ -9,7 +9,7 @@ class UsuariosShowTest < ActionDispatch::IntegrationTest
   test "accede al perfil de un usuario cuando no está logueado" do
     get usuario_path(@usuario)
     assert_template 'usuarios/show'
-    assert_select "a[href=?]", lists_path
+    assert_select "a[href=?]", lists_path, text: "Listas" || "Lists"
     assert_select "a[href=?]", amigos_path
     assert_select "a[href=?]", anadir_amigos_usuario_path(@usuario), count: 0
     assert_select "a[href=?]", borrar_amigos_usuario_path(@usuario), count: 0

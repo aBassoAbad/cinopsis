@@ -44,6 +44,7 @@ es:
   borrar_lista_vistos: "Esta lista no se puede borrar"
   lista_editada: "Lista editada correctamente"
   lista_no_editada: "No se ha podido editar la lista"
+  personas: "Equipo"
 
   helpers:
     page_entries_info:

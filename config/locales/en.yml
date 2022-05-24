@@ -75,6 +75,7 @@ en:
   borrar_lista_vistos: "Unable to delete this list"
   lista_editada: "List has been edited successfully"
   lista_no_editada: "Unable to edit this list"
+  personas: "Team"
 
   helpers:
     page_entries_info:
