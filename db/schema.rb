@@ -12,17 +12,17 @@
 
 ActiveRecord::Schema.define(version: 2022_05_16_111613) do
 
-  create_table "active_storage_attachments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
-    t.bigint "record_id", null: false
-    t.bigint "blob_id", null: false
+    t.integer "record_id", null: false
+    t.integer "blob_id", null: false
     t.datetime "created_at", null: false
     t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
     t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
   end
 
-  create_table "active_storage_blobs", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "active_storage_blobs", force: :cascade do |t|
     t.string "key", null: false
     t.string "filename", null: false
     t.string "content_type"
@@ -34,49 +34,49 @@ ActiveRecord::Schema.define(version: 2022_05_16_111613) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
-  create_table "active_storage_variant_records", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.bigint "blob_id", null: false
+  create_table "active_storage_variant_records", force: :cascade do |t|
+    t.integer "blob_id", null: false
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
-  create_table "friendships", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.bigint "usuario_id"
-    t.bigint "amigo_id"
+  create_table "friendships", force: :cascade do |t|
+    t.integer "usuario_id"
+    t.integer "amigo_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["amigo_id"], name: "index_friendships_on_amigo_id"
     t.index ["usuario_id"], name: "index_friendships_on_usuario_id"
   end
 
-  create_table "genero_peliculas", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "genero_peliculas", force: :cascade do |t|
     t.integer "pelicula_id"
     t.integer "genero_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "generos", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "generos", force: :cascade do |t|
     t.string "nombre"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "list_peliculas", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "list_peliculas", force: :cascade do |t|
     t.integer "pelicula_id"
     t.integer "list_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "lists", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "lists", force: :cascade do |t|
     t.string "nombre_lista"
     t.integer "usuario_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "peliculas", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "peliculas", force: :cascade do |t|
     t.string "nombre"
     t.date "fecha_estreno"
     t.text "sinopsis"
@@ -86,14 +86,14 @@ ActiveRecord::Schema.define(version: 2022_05_16_111613) do
     t.string "tipo"
   end
 
-  create_table "persona_peliculas", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "persona_peliculas", force: :cascade do |t|
     t.integer "pelicula_id"
     t.integer "persona_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "personas", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "personas", force: :cascade do |t|
     t.string "nombre"
     t.string "departamento"
     t.text "biografía"
@@ -105,21 +105,21 @@ ActiveRecord::Schema.define(version: 2022_05_16_111613) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "plataforma_peliculas", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "plataforma_peliculas", force: :cascade do |t|
     t.integer "plataforma_id"
     t.integer "pelicula_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "plataformas", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "plataformas", force: :cascade do |t|
     t.string "nombre"
     t.string "foto"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "usuarios", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "usuarios", force: :cascade do |t|
     t.string "nombre"
     t.string "email"
     t.datetime "created_at", precision: 6, null: false

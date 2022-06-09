@@ -1,6 +1,9 @@
+body{
+    background-color: #ddd;
+}
 img{
-    height: 10px;
-    width: 10px;
+    height: 300px;
+    width: auto;
 }
 a{
     color: black;
@@ -65,5 +68,17 @@ a{
 }
 
 .bandera{
-    margin-left: 10px
+    margin-left: 10px;
+    height: 30px;
+    width: 30px;
+}
+
+.fixed{
+    position:fixed;
+    width: 100%;
+    z-index: 1;
+}
+
+.card-body{
+    background-color: #DDD;
 }
