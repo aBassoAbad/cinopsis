@@ -47,6 +47,11 @@ es:
   personas: "Equipo"
   pelis_populares: "Películas populares"
   pelis_mejor_valoradas: "Películas mejor valoradas"
+  fecha_estreno: "Fecha de estreno"
+  sinopsis: "Sinopsis"
+  plataformas: "Plataformas"
+  elenco: "Elenco"
+  no_provider: "No está disponible en ninguna plataforma"
 
   helpers:
     page_entries_info:

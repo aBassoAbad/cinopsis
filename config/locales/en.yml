@@ -80,6 +80,11 @@ en:
   pelis_mejor_valoradas: "Top rated movies"
   series_populares: "Popular tv series"
   series_mejor_valoradas: "Top rated tv series"
+  fecha_estreno: "Release date"
+  sinopsis: "Synopsis"
+  plataformas: "Providers"
+  elenco: "Cast"
+  no_provider: "Not available on any platform"
 
   helpers:
     page_entries_info:

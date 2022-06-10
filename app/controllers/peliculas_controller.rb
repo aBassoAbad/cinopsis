@@ -1,28 +1,38 @@
 class PeliculasController < ApplicationController
     def index
-        response = RestClient.get('https://api.themoviedb.org/3/movie/popular?api_key=54e1519f91f40d97ec2abbdf458545ac&language=es-ES')
-        @populares = JSON.parse(response)
-        
-        response = RestClient.get('https://api.themoviedb.org/3/movie/top_rated?api_key=54e1519f91f40d97ec2abbdf458545ac&language=es-ES')
-        @mejor_valoradas = JSON.parse(response)
+        if I18n.locale == :es
+            @locale = "es-ES"
+        else
+            @locale = "en-EN"
+        end
+            response = RestClient.get("https://api.themoviedb.org/3/movie/popular?api_key=54e1519f91f40d97ec2abbdf458545ac&language=#{@locale}")
+            @populares = JSON.parse(response)
+            
+            response = RestClient.get("https://api.themoviedb.org/3/movie/top_rated?api_key=54e1519f91f40d97ec2abbdf458545ac&language=#{@locale}")
+            @mejor_valoradas = JSON.parse(response)
     end
 
     def show
+        if I18n.locale == :es
+            @locale = "es-ES"
+        else
+            @locale = "en-EN"
+        end
         @id = params[:id]
-        response = RestClient.get("https://api.themoviedb.org/3/movie/#{@id}?api_key=54e1519f91f40d97ec2abbdf458545ac&language=es-ES")
+        response = RestClient.get("https://api.themoviedb.org/3/movie/#{@id}?api_key=54e1519f91f40d97ec2abbdf458545ac&language=#{@locale}")
         @detalles = JSON.parse(response)
         
-        response = RestClient.get("https://api.themoviedb.org/3/movie/#{@id}/credits?api_key=54e1519f91f40d97ec2abbdf458545ac&language=es-ES")
+        response = RestClient.get("https://api.themoviedb.org/3/movie/#{@id}/credits?api_key=54e1519f91f40d97ec2abbdf458545ac&language=#{@locale}")
         @equipo = JSON.parse(response)["cast"]
         
-        response = RestClient.get("https://api.themoviedb.org/3/movie/#{@id}/watch/providers?api_key=54e1519f91f40d97ec2abbdf458545ac&language=es-ES")
+        response = RestClient.get("https://api.themoviedb.org/3/movie/#{@id}/watch/providers?api_key=54e1519f91f40d97ec2abbdf458545ac&language=#{@locale}")
         begin
             @providers = JSON.parse(response)["results"]["ES"]["flatrate"]
         rescue
             @providers = ""
         end
 
-        response = RestClient.get("https://api.themoviedb.org/3/movie/#{@id}/videos?api_key=54e1519f91f40d97ec2abbdf458545ac&language=es-ES")
+        response = RestClient.get("https://api.themoviedb.org/3/movie/#{@id}/videos?api_key=54e1519f91f40d97ec2abbdf458545ac&language=#{@locale}")
         @video = JSON.parse(response)
     end
 
@@ -36,9 +46,14 @@ class PeliculasController < ApplicationController
     end
 
     def buscar
-        response = RestClient.get("https://api.themoviedb.org/3/search/movie?api_key=54e1519f91f40d97ec2abbdf458545ac&query=#{params[:query]}&language=es-ES&include_adult=false")
+        if I18n.locale == :es
+            @locale = "es-ES"
+        else
+            @locale = "en-EN"
+        end
+        response = RestClient.get("https://api.themoviedb.org/3/search/movie?api_key=54e1519f91f40d97ec2abbdf458545ac&query=#{params[:query]}&language=#{@locale}&include_adult=false")
         @peliculas = JSON.parse(response)["results"]
-        response = RestClient.get("https://api.themoviedb.org/3/search/tv?api_key=54e1519f91f40d97ec2abbdf458545ac&query=#{params[:query]}&language=es-ES&include_adult=false")
+        response = RestClient.get("https://api.themoviedb.org/3/search/tv?api_key=54e1519f91f40d97ec2abbdf458545ac&query=#{params[:query]}&language=#{@locale}&include_adult=false")
         @series = JSON.parse(response)["results"]
     end
 
