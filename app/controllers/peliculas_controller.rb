@@ -26,26 +26,6 @@ class PeliculasController < ApplicationController
         @video = JSON.parse(response)
     end
 
-    def show_series
-        @id = params[:id]
-        response = RestClient.get("https://api.themoviedb.org/3/tv/#{@id}?api_key=54e1519f91f40d97ec2abbdf458545ac&language=es-ES")
-        @detalles = JSON.parse(response)
-        
-        response = RestClient.get("https://api.themoviedb.org/3/tv/#{@id}/credits?api_key=54e1519f91f40d97ec2abbdf458545ac&language=es-ES")
-        @equipo = JSON.parse(response)
-        
-        response = RestClient.get("https://api.themoviedb.org/3/tv/#{@id}/watch/providers?api_key=54e1519f91f40d97ec2abbdf458545ac&language=es-ES")
-        @equipo = JSON.parse(response)
-    end
-
-    def series      
-        response = RestClient.get('https://api.themoviedb.org/3/tv/popular?api_key=54e1519f91f40d97ec2abbdf458545ac&language=es-ES')
-        @populares = JSON.parse(response)
-        
-        response = RestClient.get('https://api.themoviedb.org/3/tv/top_rated?api_key=54e1519f91f40d97ec2abbdf458545ac&language=es-ES')
-        @mejor_valoradas = JSON.parse(response)
-    end
-
     def new
     end
 
@@ -53,6 +33,13 @@ class PeliculasController < ApplicationController
     end
 
     def destroy
+    end
+
+    def buscar
+        response = RestClient.get("https://api.themoviedb.org/3/search/movie?api_key=54e1519f91f40d97ec2abbdf458545ac&query=#{params[:query]}&language=es-ES&include_adult=false")
+        @peliculas = JSON.parse(response)["results"]
+        response = RestClient.get("https://api.themoviedb.org/3/search/tv?api_key=54e1519f91f40d97ec2abbdf458545ac&query=#{params[:query]}&language=es-ES&include_adult=false")
+        @series = JSON.parse(response)["results"]
     end
 
     

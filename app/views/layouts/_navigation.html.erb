@@ -26,8 +26,10 @@
           </li>
       </ul>
       <form class="d-flex me-auto">
-        <input class="form-control" type="search" placeholder="<%=t(:buscar)%>" aria-label="Search">
+        <input id="buscar_text" class="form-control" type="search" placeholder="<%=t(:buscar)%>" aria-label="Search">
+        <input id="buscar" type="submit" value="<%=t(:buscar)%>">
       </form>
+      
       <ul class="navbar-nav me-5">
         <% if logged_in? %>
           <li class="nav-item dropdown">

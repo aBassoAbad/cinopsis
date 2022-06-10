@@ -1,8 +1,8 @@
-<%= render "shared/titulo_pagina", titulo: @detalles["title"] %>
+<%= render "shared/titulo_pagina", titulo: @detalles["name"] %>
 <% 
     @sprite = "https://image.tmdb.org/t/p/w500/#{@detalles["poster_path"]}"
     begin
-    @trailer = " https://www.youtube.com/embed/#{@video["results"][0]["key"]}"
+    @trailer = "https://www.youtube.com/embed/#{@video["results"][0]["key"]}"
     rescue
     end
 %>

@@ -3,8 +3,13 @@ $(document).ready(function(){
         $('#mensajes').slideUp(500);
     })
     
-    //$('#mensajes').hide().delay(5000).fadeOut(400);
     $("#mensajes").fadeTo(10000, 500).slideUp(500, function() {
         $("#mensajes").slideUp(500);
-      });
+    });
+
+    $("#buscar").on("click", function(event) {
+        event.preventDefault();
+        var texto = $("#buscar_text").val()
+        window.location.replace("http://127.0.0.1:3000/buscar/"+texto);
+    })
 });
