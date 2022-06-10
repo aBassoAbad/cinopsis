@@ -1,5 +1,8 @@
 body{
     background-color: #ddd;
+    padding: 0;
+    margin: 0;
+    min-width: 900px;
 }
 img{
     height: 300px;
@@ -81,4 +84,28 @@ a{
 
 .card-body{
     background-color: #DDD;
+}
+
+.titulo{
+    padding-top: 70px;
+}
+
+.caja{
+    display: inline-block;
+    max-width: 60%;
+}
+
+.provider{
+    height: 100px;
+    width: auto;
+    margin-top: 0px;
+}
+
+.poster{
+    height: 500px;
+}
+
+.parent{
+    display: flex;
+    flex-direction: row;
 }

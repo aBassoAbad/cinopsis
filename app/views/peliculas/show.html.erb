@@ -1,1 +1,102 @@
-<%= debug params %>
+<%= render "shared/titulo_pagina", titulo: @detalles["title"] %>
+<% 
+    @sprite = "https://image.tmdb.org/t/p/w500/#{@detalles["poster_path"]}"
+    @trailer = " https://www.youtube.com/embed/#{@video["results"][0]["key"]}"
+%>
+<div class="parent">
+    <div class="caja mx-3">
+        <%= image_tag url_for(@sprite), class: "poster" %>
+    </div>  
+    <div class="caja mx-3">
+        <h4>Fecha de estreno:</h4>
+        <p> <%= @detalles["release_date"] %></p>
+        <h4>Sinopsis:</h4>
+        <p> <%= @detalles["overview"] %></p>
+        <h4>Providers: </h4>
+        <% 
+        begin
+        @providers.each do |p| 
+        %>
+        <%= image_tag url_for("https://image.tmdb.org/t/p/w500/#{p["logo_path"]}"), class:"provider" %>
+        <% 
+        
+        end
+        rescue %>
+        <p>No está disponible en ninguna plataforma</p>
+        <% end
+        %>
+    </div>
+</div>
+<div class="mx-3">
+    <h4>Elenco:</h4>
+    <div id="carousel1" class="carousel carousel-dark slide" data-bs-interval="false">
+      <div class="carousel-inner">
+        <!--Primer item del slider-->
+        <div class="carousel-item active">
+          <div class="row">
+            <% primeras = @equipo.first(6)%>
+            <% primeras.each do |persona| %>
+              <% @equipo.shift
+              if persona["profile_path"] != nil
+                @foto = "https://image.tmdb.org/t/p/w500/#{persona["profile_path"]}"
+              else
+                @foto = asset_path('user.png')
+              end
+                %>
+              <div class="col-md-2">
+                <div class="card mb-2">
+                    <%= image_tag url_for(@foto), class: "card-img-top" %>
+                  
+                  <div class="card-body">
+                    <h6 class="card-title"><%= persona["name"]%></h6>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </div>
+        
+        <!--Fin primer item del slider-->
+
+        <!--Resto de items del slider-->
+        <% while @equipo.length() > 0%>
+          <div class="carousel-item">
+            <div class="row">
+              <% primeras = @equipo.first(6)%>
+              <% primeras.each do |persona| 
+                @equipo.shift
+                if persona["profile_path"] != nil
+                    @foto = "https://image.tmdb.org/t/p/w500/#{persona["profile_path"]}"
+                else
+                    @foto = asset_path('user.png')
+                end                %>
+                <div class="col-md-2">
+                  <div class="card mb-2">
+                      <%= image_tag url_for(@foto), class: "card-img-top" %>
+                    <div class="card-body">
+                      <h6 class="card-title"><%= persona["name"]%></h6>
+                    </div>
+                  </div>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+        <!--Fin de los items-->
+
+      </div>
+      <!--Controles del slider-->
+      <button class="carousel-control-prev" type="button" data-bs-target="#carousel1" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carousel1" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+</div>   
+<div class="caja mx-3">
+    <h4>Trailer: </h4>
+    <iframe width="500px" height="250px" src="<%= @trailer %>" frameborder="0"></iframe>
+</div>

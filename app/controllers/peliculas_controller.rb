@@ -1,10 +1,5 @@
 class PeliculasController < ApplicationController
     def index
-        #response = RestClient.get('https://pokeapi.co/api/v2/pokemon?limit=12')
-        #@pelicula = JSON.parse(response)
-        #response = RestClient.get('https://pokeapi.co/api/v2/pokemon?limit=12&offset=12')
-        #@peliculas = JSON.parse(response)
-        #@peliculas = Pelicula.all.per(20)
         response = RestClient.get('https://api.themoviedb.org/3/movie/popular?api_key=54e1519f91f40d97ec2abbdf458545ac&language=es-ES')
         @populares = JSON.parse(response)
         
@@ -13,21 +8,42 @@ class PeliculasController < ApplicationController
     end
 
     def show
-        @nombre = params[:id]
-        response = RestClient.get("https://pokeapi.co/api/v2/pokemon/#{@nombre}")
-        @peliculas = JSON.parse(response)
-        @pelicula = Pelicula.first
-        @equipo = @pelicula.personas.order(:departamento)
-        @generos = @pelicula.generos
-        @plataformas = @pelicula.plataformas
+        @id = params[:id]
+        response = RestClient.get("https://api.themoviedb.org/3/movie/#{@id}?api_key=54e1519f91f40d97ec2abbdf458545ac&language=es-ES")
+        @detalles = JSON.parse(response)
+        
+        response = RestClient.get("https://api.themoviedb.org/3/movie/#{@id}/credits?api_key=54e1519f91f40d97ec2abbdf458545ac&language=es-ES")
+        @equipo = JSON.parse(response)["cast"]
+        
+        response = RestClient.get("https://api.themoviedb.org/3/movie/#{@id}/watch/providers?api_key=54e1519f91f40d97ec2abbdf458545ac&language=es-ES")
+        begin
+            @providers = JSON.parse(response)["results"]["ES"]["flatrate"]
+        rescue
+            @providers = ""
+        end
+
+        response = RestClient.get("https://api.themoviedb.org/3/movie/#{@id}/videos?api_key=54e1519f91f40d97ec2abbdf458545ac&language=es-ES")
+        @video = JSON.parse(response)
     end
 
-    def series
-        #response = RestClient.get('https://pokeapi.co/api/v2/pokemon')
-        #@series = JSON.parse(response)
+    def show_series
+        @id = params[:id]
+        response = RestClient.get("https://api.themoviedb.org/3/tv/#{@id}?api_key=54e1519f91f40d97ec2abbdf458545ac&language=es-ES")
+        @detalles = JSON.parse(response)
+        
+        response = RestClient.get("https://api.themoviedb.org/3/tv/#{@id}/credits?api_key=54e1519f91f40d97ec2abbdf458545ac&language=es-ES")
+        @equipo = JSON.parse(response)
+        
+        response = RestClient.get("https://api.themoviedb.org/3/tv/#{@id}/watch/providers?api_key=54e1519f91f40d97ec2abbdf458545ac&language=es-ES")
+        @equipo = JSON.parse(response)
+    end
 
+    def series      
         response = RestClient.get('https://api.themoviedb.org/3/tv/popular?api_key=54e1519f91f40d97ec2abbdf458545ac&language=es-ES')
-        @pelicula = JSON.parse(response)
+        @populares = JSON.parse(response)
+        
+        response = RestClient.get('https://api.themoviedb.org/3/tv/top_rated?api_key=54e1519f91f40d97ec2abbdf458545ac&language=es-ES')
+        @mejor_valoradas = JSON.parse(response)
     end
 
     def new

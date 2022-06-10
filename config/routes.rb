@@ -1,12 +1,13 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-  root "paginas#home"
-  get 'paginas/home', to: 'paginas#home'
+  root "peliculas#index"
+  get 'peliculas/index', to: 'peliculas#index'
 
   get '/registro', to: 'usuarios#new'
   resources :lists
   resources :peliculas
   get '/series', to: 'peliculas#series'
+  get '/show-series', to: 'peliculas#show_series'
   resources :usuarios, except: [:new]
   resources :usuarios do
     member do 

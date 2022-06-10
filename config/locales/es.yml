@@ -45,6 +45,8 @@ es:
   lista_editada: "Lista editada correctamente"
   lista_no_editada: "No se ha podido editar la lista"
   personas: "Equipo"
+  pelis_populares: "Películas populares"
+  pelis_mejor_valoradas: "Películas mejor valoradas"
 
   helpers:
     page_entries_info:

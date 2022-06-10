@@ -76,6 +76,10 @@ en:
   lista_editada: "List has been edited successfully"
   lista_no_editada: "Unable to edit this list"
   personas: "Team"
+  pelis_populares: "Popular movies"
+  pelis_mejor_valoradas: "Top rated movies"
+  series_populares: "Popular tv series"
+  series_mejor_valoradas: "Top rated tv series"
 
   helpers:
     page_entries_info:
