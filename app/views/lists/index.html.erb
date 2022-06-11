@@ -1,19 +1,96 @@
 <%= render "shared/titulo_pagina", titulo: t(:listas) %>
-<%= link_to t(:crear_lista), new_list_path(), class: "btn btn-xs btn-primary" %>
 <div class="center list-group">
-  <%= paginate @listas, outer_window: 3 %>
   <% @listas.each do |lista| %>
-    <ul class="list-group-item listing">
+    <ul class=" listing">
       <div class="row"> 
-        <%=link_to lista.nombre_lista.capitalize, list_path(lista) %>
-        <% if lista.peliculas.any? %>
-          <ul class="list-group list-group-horizontal">
-              <%= render lista.peliculas.order('created_at DESC') %>
-          </ul>
-        <% end %>
-        <div>
+        <h4 class="nombre-lista"><%=link_to lista.nombre_lista.capitalize, list_path(lista) %></h4>
+        <% 
+          if lista.peliculas.any?
+            populares = lista.peliculas.to_a
+          else
+            populares = {}
+          end
+        %>
+        <div id="carousel1" class="carousel carousel-dark slide" data-bs-interval="false">
+          <div class="carousel-inner">
+            <!--Primer item del slider-->
+            <div class="carousel-item active">
+              <div class="row">
+                <% primeras = populares.first(6)%>
+                <% primeras.each do |pelicula| 
+                  populares.shift
+                  %>
+                  <%
+                  @sprite = "https://image.tmdb.org/t/p/w500/#{pelicula.poster}"
+                    %>
+                  <div class="col-md-2">
+                    <div class="card mb-2">
+                      <% if pelicula.tipo == "pelicula" %>
+                        <%= link_to pelicula_path(pelicula.id_tmdb) do %>
+                          <%= image_tag url_for(@sprite), class: "card-img-top" %>
+                        <% end %>
+                      <% elsif pelicula.tipo == "serie"%>
+                        <%= link_to series_show_path(pelicula.id_tmdb) do %>
+                          <%= image_tag url_for(@sprite), class: "card-img-top" %>
+                        <% end %>
+                      <% end %>
+                      <div class="card-body">
+                        <h6 class="card-title"><%= pelicula.nombre%></h6>
+                      </div>
+                    </div>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+            
+            <!--Fin primer item del slider-->
+
+            <!--Resto de items del slider-->
+            <% while populares.length() > 0%>
+            
+              <div class="carousel-item">
+                <div class="row">
+                  <% primeras = populares.first(6)%>
+                  <% primeras.each do |pelicula| 
+                    populares.shift
+                    @sprite = "https://image.tmdb.org/t/p/w500/#{pelicula.poster}"
+                    %>
+                    <div class="col-md-2">
+                      <div class="card mb-2">
+                        <% if pelicula.tipo == "pelicula" %>
+                          <%= link_to pelicula_path(pelicula.id_tmdb) do %>
+                            <%= image_tag url_for(@sprite), class: "card-img-top" %>
+                          <% end %>
+                        <% elsif pelicula.tipo == "serie"%>
+                          <%= link_to series_show_path(pelicula.id_tmdb) do %>
+                            <%= image_tag url_for(@sprite), class: "card-img-top" %>
+                          <% end %>
+                        <% end %>
+                        <div class="card-body">
+                          <h6 class="card-title"><%= pelicula.nombre%></h6>
+                        </div>
+                      </div>
+                    </div>
+                  <% end %>
+                </div>
+              </div>
+            <% end %>
+            <!--Fin de los items-->
+
+          </div>
+          <!--Controles del slider-->
+          <button class="carousel-control-prev" type="button" data-bs-target="#carousel1" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#carousel1" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
+        <div class="parent">
           <% if lista.nombre_lista != "Vistos" %>
-            <%= button_to t(:borrar_lista), list_path(lista), method: :delete, class: "btn btn-xs btn-danger" %>
+            <%= button_to t(:borrar_lista), list_path(lista), method: :delete, class: "btn btn-xs btn-danger mx-2" %>
             <%= link_to t(:editar_lista), edit_list_path(lista), class: "btn btn-xs btn-warning" %>
           <% end %>
         </div>
@@ -21,3 +98,5 @@
     </ul>      
   <% end %>
 </div>
+
+<%= link_to t(:crear_lista), new_list_path(), class: "btn btn-xs btn-primary" %>

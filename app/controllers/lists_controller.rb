@@ -1,6 +1,6 @@
 class ListsController < ApplicationController
     def index
-        @listas = List.where(usuario_id: usuario_actual.id).page(params[:page]).per(2)
+        @listas = List.where(usuario_id: usuario_actual.id)
     end
 
     def show
@@ -16,7 +16,7 @@ class ListsController < ApplicationController
         @lista.usuario = usuario_actual
         if @lista.save
             flash[:success] = t(:lista_creade)
-            redirect_to list_path(@lista)
+            redirect_to lists_path
         else
             flash[:danger] = t(:lista_no_creada)
             render 'new'

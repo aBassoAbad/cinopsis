@@ -12,7 +12,7 @@
     </div>  
     <div class="caja mx-3">
         <h4><%=t(:fecha_estreno)%>:</h4>
-        <p> <%= @detalles["release_date"] %></p>
+        <p> <%= @detalles["first_air_date"] %></p>
         <h4><%=t(:sinopsis)%>:</h4>
         <p> <%= @detalles["overview"] %></p>
         <h4><%=t(:plataformas)%>: </h4>
@@ -28,6 +28,36 @@
         <p><%=t(:no_provider)%></p>
         <% end
         %>
+        <h4 class="mt-4">Listas: </h4>
+          <p>
+          <% @listas.each do |lista|%>
+            <span class="badge bg-secondary"><%= lista.nombre_lista %></span>
+          <% end %>
+          </p>
+          <button href="#" id="anadir" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Añadir a lista
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="anadir">
+            <% @listas_usuario.each do |lista|%>
+              <% @detalles["id_lista"] = lista.id %>
+              <%= button_to anadir_serie_a_lista_path(@detalles), class:"dropdown-item" do %>
+                <% params["id_lista"] = lista.id%>
+                <span class="dropdown-item"><%= lista.nombre_lista %></span>
+              <% end %>
+            <% end %>
+          </ul>
+          <button href="#" id="borrar" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Borrar de lista
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="borrar">
+            <% @listas.each do |lista|%>
+              <% @detalles["id_lista"] = lista.id %>
+              <%= button_to borrar_serie_de_lista_path(@detalles), method: :delete, class:"dropdown-item" do%>
+                <% params["id_lista"] = lista.id%>
+                <span class="dropdown-item"><%= lista.nombre_lista %></span>
+              <% end %>
+            <% end %>
+          </ul>
     </div>
 </div>
 <div class="mx-3">

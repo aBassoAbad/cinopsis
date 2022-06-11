@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_05_16_111613) do
+ActiveRecord::Schema.define(version: 2022_06_11_152355) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -49,19 +49,6 @@ ActiveRecord::Schema.define(version: 2022_05_16_111613) do
     t.index ["usuario_id"], name: "index_friendships_on_usuario_id"
   end
 
-  create_table "genero_peliculas", force: :cascade do |t|
-    t.integer "pelicula_id"
-    t.integer "genero_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "generos", force: :cascade do |t|
-    t.string "nombre"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "list_peliculas", force: :cascade do |t|
     t.integer "pelicula_id"
     t.integer "list_id"
@@ -84,39 +71,7 @@ ActiveRecord::Schema.define(version: 2022_05_16_111613) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "tipo"
-  end
-
-  create_table "persona_peliculas", force: :cascade do |t|
-    t.integer "pelicula_id"
-    t.integer "persona_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "personas", force: :cascade do |t|
-    t.string "nombre"
-    t.string "departamento"
-    t.text "biografía"
-    t.date "fecha_nac"
-    t.date "fecha_fall"
-    t.string "nacionalidad"
-    t.string "foto"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "plataforma_peliculas", force: :cascade do |t|
-    t.integer "plataforma_id"
-    t.integer "pelicula_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "plataformas", force: :cascade do |t|
-    t.string "nombre"
-    t.string "foto"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.integer "id_tmdb"
   end
 
   create_table "usuarios", force: :cascade do |t|
