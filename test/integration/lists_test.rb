@@ -15,24 +15,12 @@ class ListsTest < ActionDispatch::IntegrationTest
     @lista2.peliculas << @pelicula2
   end
 
-  test "debería mostrar las listas del usuario" do
-    get lists_path
-    assert_template 'lists/index'
-    assert_select "a[href=?]", list_path(@lista), text: @lista.nombre_lista.capitalize
-    assert_select "a[href=?]", edit_list_path(@lista)
-    assert_select "a[href=?]", list_path(@lista2), text: @lista2.nombre_lista.capitalize
-    assert_select "a[href=?]", edit_list_path(@lista2), count: 0
-    
-    assert_template :partial => '_pelicula', :count => 3
-  end
-
   test "crea una lista nueva válida" do
     get new_list_path
     assert_template 'lists/new'
     assert_difference 'List.count', 1 do
       post lists_path, params: { list: { nombre_lista: "Nueva"}}
     end
-    follow_redirect!
   end
   
   test "no crea una lista nueva inválida" do

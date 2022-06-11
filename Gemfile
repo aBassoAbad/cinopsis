@@ -7,7 +7,7 @@ ruby '3.1.2'
 gem 'rails', '~> 6.1.5'
 # Use mysql2 as the database for Active Record
 #gem 'mysql2', '~> 0.5'
-gem 'sqlite3', '~> 1.4'
+#gem 'sqlite3', '~> 1.4'
 # Use Puma as the app server
 gem 'puma', '~> 5.0'
 # Use SCSS for stylesheets
@@ -45,6 +45,7 @@ gem 'net-pop'  # for rspec
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'sqlite3', '~> 1.4'
 end
 
 group :development do

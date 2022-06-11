@@ -10,6 +10,6 @@ class SeriesTest < ActionDispatch::IntegrationTest
 
   test "Dirige a la página de series" do
     get series_path
-    assert_template "peliculas/series"
+    assert_template "series/index"
   end
 end
