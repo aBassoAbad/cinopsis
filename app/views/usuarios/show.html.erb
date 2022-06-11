@@ -27,7 +27,7 @@
 </nav>
 
 <p>
-<%= t(:pelis_vistas) %> <%= Pelicula.joins(:lists).where("lists.usuario_id"=>@usuario.id).where("lists.nombre_Lista" => "Vistos").count%>
+<%= t(:pelis_vistas) %> <%= Pelicula.joins(:lists).where("lists.usuario_id"=>@usuario.id).where("lists.nombre_lista" => "Vistos").count%>
 </p>
 <p>
 <%= t(:siguiendo) %> <%= Friendship.where("usuario_id" => @usuario.id).count %>
