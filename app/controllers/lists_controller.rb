@@ -1,6 +1,9 @@
 class ListsController < ApplicationController
-    def index
-        @listas = List.where(usuario_id: usuario_actual.id)
+    before_action :necesario_admin, only:[:destroy, :edit, :update]
+    before_action :necesario_mismo_usuario, only:[:edit, :update, :destroy]
+    
+    def listas
+        @listas = List.where(usuario_id: params[:id])
     end
 
     def show
@@ -16,7 +19,7 @@ class ListsController < ApplicationController
         @lista.usuario = usuario_actual
         if @lista.save
             flash[:success] = t(:lista_creade)
-            redirect_to lists_path
+            redirect_to listas_path(usuario_actual)
         else
             flash[:danger] = t(:lista_no_creada)
             render 'new'
@@ -57,5 +60,26 @@ class ListsController < ApplicationController
     
     def lista_params
         params.require(:list).permit(:nombre_lista)
+    end
+
+    def necesario_mismo_usuario
+        if logged_in? & usuario_actual != @usuario
+            flash[:danger] = t(:accion_invalidada)
+            redirect_to usuarios_path
+        end
+    end
+
+    def necesario_admin
+        if logged_in? & !usuario_actual.admin?
+            flash[:danger] = t(:accion_invalidada)
+            redirect_to root_path
+        end
+    end
+
+    def necesario_loggeado
+        if !logged_in?
+            flash[:danger] = t(:accion_invalidada)
+            redirect_to root_path
+        end
     end
 end

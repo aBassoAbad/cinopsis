@@ -1,7 +1,6 @@
 class UsuariosController < ApplicationController
     before_action :set_usuario, only:[:show, :edit, :update, :destroy]
-    before_action :necesario_admin, only:[:destroy]
-    before_action :necesario_mismo_usuario, only:[:edit, :update, :destroy]
+    before_action :necesario_mismo_usuario_o_admin, only:[:edit, :update, :destroy]
     def new
         @usuario = Usuario.new
     end
@@ -62,8 +61,8 @@ class UsuariosController < ApplicationController
         @usuario = Usuario.find(params[:id])
     end
     
-    def necesario_mismo_usuario
-        if usuario_actual != @usuario
+    def necesario_mismo_usuario_o_admin
+        if logged_in? && usuario_actual != @usuario && usuario_actual.admin?
             flash[:danger] = t(:accion_invalidada)
             redirect_to usuarios_path
         end

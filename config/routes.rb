@@ -5,6 +5,7 @@ Rails.application.routes.draw do
 
   get '/registro', to: 'usuarios#new'
   resources :lists
+  get '/listas/:id', to: 'lists#listas', as: "listas"
   resources :peliculas
   get '/series', to: 'series#index'
   get '/series_show/:id', to: 'series#show', as: "series_show"

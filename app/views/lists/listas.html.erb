@@ -89,7 +89,7 @@
           </button>
         </div>
         <div class="parent">
-          <% if lista.nombre_lista != "Vistos" %>
+          <% if lista.nombre_lista != "Vistos" && logged_in? && (usuario_actual == Usuario.find(params[:id])||usuario_actual.admin?) %>
             <%= button_to t(:borrar_lista), list_path(lista), method: :delete, class: "btn btn-xs btn-danger mx-2" %>
             <%= link_to t(:editar_lista), edit_list_path(lista), class: "btn btn-xs btn-warning" %>
           <% end %>
