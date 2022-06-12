@@ -1,3 +1,4 @@
+<%= render "shared/titulo_pagina", titulo: "Crear usuario administrador" %>
 <div class="row">
   <div class="col-md-12">
     <%= form_for(@usuario, :html => {class: "form-horizontal", role: "form"}) do |f| %>
@@ -33,8 +34,14 @@
           <%= f.password_field :password_confirmation, class: "form-control", placeholder: t(:introduce_contrasena) %>
         </div>
       </div>
+      <div class="form-group">
+        <div class="control-label col-md-4">
+          <%= f.label :admin, "Admin" %>
+          <%= f.check_box :admin, placeholder: "Admin" %>
+        </div>
+      </div>
       <div class="form-group center">
-          <%= f.submit(t(:registrar), class: "btn btn-primary btn-lg btn-xlarge") %>
+          <%= f.submit("Crear usuario administrador", class: "btn btn-primary btn-lg btn-xlarge") %>
       </div>
     <% end %>
   </div>

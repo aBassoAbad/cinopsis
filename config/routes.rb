@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   get 'peliculas/index', to: 'peliculas#index'
 
   get '/registro', to: 'usuarios#new'
+  get '/new_admin', to: 'usuarios#new_admin'
+  post 'create_admin', to: 'usuarios#crear_admin'
   resources :lists
   get '/listas/:id', to: 'lists#listas', as: "listas"
   resources :peliculas

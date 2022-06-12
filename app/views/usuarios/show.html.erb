@@ -21,7 +21,8 @@
           </li>
         <% end %>
         </div>
-      <% elsif logged_in? && (usuario_actual == @usuario)%>
+      <% end %>
+      <% if logged_in? && (usuario_actual == @usuario || usuario_actual.admin?)%>
         <%= link_to "Editar", edit_usuario_path, class: "btn btn-xs btn-warning mx-2 my-2" %>
         <%= button_to "Borrar", usuario_path, method: :delete, class: "btn btn-xs btn-danger my-2" %>
       <% end %>

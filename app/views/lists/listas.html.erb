@@ -1,9 +1,10 @@
 <%= render "shared/titulo_pagina", titulo: t(:listas) %>
+<%= link_to t(:crear_lista), new_list_path(), class: "btn btn-xs btn-primary" %>
 <div class="center list-group">
   <% @listas.each do |lista| %>
     <ul class=" listing">
       <div class="row"> 
-        <h4 class="nombre-lista"><%=link_to lista.nombre_lista.capitalize, list_path(lista) %></h4>
+        <h4 class="nombre-lista mt-3"><%=link_to lista.nombre_lista.capitalize, list_path(lista) %></h4>
         <% 
           if lista.peliculas.any?
             populares = lista.peliculas.to_a
@@ -98,5 +99,3 @@
     </ul>      
   <% end %>
 </div>
-
-<%= link_to t(:crear_lista), new_list_path(), class: "btn btn-xs btn-primary" %>

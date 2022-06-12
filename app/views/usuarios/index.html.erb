@@ -1,6 +1,8 @@
 <%= render "shared/titulo_pagina", titulo: t(:usuarios) %>
+
+  <%= link_to "Crear usuario administrador", new_admin_path, class: "btn btn-xs btn-success mb-3" %></li>
 <div class="center list-group">
-  <%= paginate @usuarios, outer_window: 3 %>
+  
   <% @usuarios.each do |usuario| %>
     <ul class="list-group-item listing grid">
       <div class="col">

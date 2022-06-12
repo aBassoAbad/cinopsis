@@ -32,7 +32,7 @@
             <h4 class="mt-4">Listas: </h4>
             <p>
             <% @listas.each do |lista|%>
-              <span class="badge bg-secondary"><%= lista.nombre_lista %></span>
+              <span class="badge bg-secondary"><%=link_to lista.nombre_lista.capitalize, list_path(lista), class: "enlace_lista" %></span>
             <% end %>
             </p>
             <button href="#" id="anadir" role="button" data-bs-toggle="dropdown" aria-expanded="false">

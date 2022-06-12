@@ -4,7 +4,6 @@ class SeriesController < ApplicationController
             @listas_usuario = usuario_actual.lists
         else
             @listas_usuario = {}
-            usuario_actual = nil
         end
         @pelicula = Pelicula.find_by(id_tmdb: params[:id])
         if @pelicula

@@ -1,5 +1,4 @@
 class ListsController < ApplicationController
-    before_action :necesario_admin, only:[:destroy, :edit, :update]
     before_action :necesario_mismo_usuario, only:[:edit, :update, :destroy]
     
     def listas
@@ -34,7 +33,7 @@ class ListsController < ApplicationController
         else
             flash[:danger] = t(:lista_no_borrada)
         end
-        redirect_to lists_path
+        redirect_to listas_path(usuario_actual)
     end
 
     def edit
@@ -63,7 +62,8 @@ class ListsController < ApplicationController
     end
 
     def necesario_mismo_usuario
-        if logged_in? & usuario_actual != @usuario
+        @usuario = Usuario.find(List.find(params[:id]).usuario_id)
+        unless logged_in? && (usuario_actual == @usuario || usuario_actual.admin?)
             flash[:danger] = t(:accion_invalidada)
             redirect_to usuarios_path
         end

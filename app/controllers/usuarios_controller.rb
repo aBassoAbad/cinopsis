@@ -36,7 +36,7 @@ class UsuariosController < ApplicationController
     end
 
     def index
-        @usuarios = Usuario.page(params[:page]).per(2)
+        @usuarios = Usuario.all
     end
 
     def anadir_amigos
@@ -51,10 +51,30 @@ class UsuariosController < ApplicationController
         redirect_back(fallback_location: root_path)
     end
 
+    def new_admin
+        @usuario = Usuario.new
+    end
+
+    def crear_admin
+        @usuario = Usuario.new(usuario_params, admin: true)
+        if @usuario.save
+            @usuario.admin = true
+            @usuario.save
+            @lista = List.create(nombre_lista: "Vistos", usuario_id: @usuario.id)
+            flash[:success] = t(:registro_correcto)
+            redirect_to root_path
+        else
+            @usuario.errors.each do |msg|
+                flash[:danger] = msg.full_message
+            end
+            render 'new_admin'
+        end
+    end
+
     private 
     
     def usuario_params
-        params.require(:usuario).permit(:nombre, :email, :password, :password_confirmation)
+        params.require(:usuario).permit(:nombre, :email, :password, :password_confirmation, :admin)
     end
 
     def set_usuario
@@ -62,7 +82,7 @@ class UsuariosController < ApplicationController
     end
     
     def necesario_mismo_usuario_o_admin
-        if logged_in? && usuario_actual != @usuario && usuario_actual.admin?
+        unless logged_in? && (usuario_actual == @usuario || usuario_actual.admin?)
             flash[:danger] = t(:accion_invalidada)
             redirect_to usuarios_path
         end
