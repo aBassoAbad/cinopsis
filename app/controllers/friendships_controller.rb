@@ -17,7 +17,7 @@ class FriendshipsController < ApplicationController
         redirect_to(request.referer)
     end
 
-    def index
-      @amigos = usuario_actual.amigos     
+    def amigos
+      @amigos = Usuario.find(params[:id]).amigos     
     end
 end

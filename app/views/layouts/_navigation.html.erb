@@ -38,7 +38,7 @@
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
               <%= link_to t(:perfil), usuario_actual, class: "dropdown-item" %></li>
-              <%= link_to t(:amigos), amigos_path, class: "dropdown-item" %></li>
+              <%= link_to t(:amigos), amigos_path(usuario_actual), class: "dropdown-item" %></li>
               <%= link_to t(:listas), listas_path(usuario_actual), class: "dropdown-item" %></li>
               <li><hr class="dropdown-divider"></li>
               

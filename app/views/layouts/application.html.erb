@@ -19,9 +19,9 @@
 
   <body>
     <%= render 'layouts/navigation' %>
-    <%= render 'layouts/mensajes' %>
-    <div class="container main" id="container">
-        <%= yield %>
+    <div class="container" id="container">
+       <div class="mensajes"> <%= render 'layouts/mensajes' %></div>
+        <div class="main"><%= yield %></div>
     </div>
     <%= render 'layouts/footer' %>
   </body>

@@ -7,7 +7,7 @@
         <%= link_to t(:listas), listas_path(@usuario), class: "nav-link" %>
       </li>
       <li class="nav-item ">
-        <%= link_to t(:amigos), amigos_path, class: "nav-link" %>
+        <%= link_to t(:amigos), amigos_path(@usuario), class: "nav-link" %>
       </li>
       <% if logged_in? && (usuario_actual != @usuario) %>
         <div>
@@ -23,19 +23,22 @@
         </div>
       <% end %>
       <% if logged_in? && (usuario_actual == @usuario || usuario_actual.admin?)%>
-        <%= link_to "Editar", edit_usuario_path, class: "btn btn-xs btn-warning mx-2 my-2" %>
-        <%= button_to "Borrar", usuario_path, method: :delete, class: "btn btn-xs btn-danger my-2" %>
+        <%= link_to t(:editar), edit_usuario_path, class: "btn btn-xs btn-warning mx-2 my-2" %>
+        <%= button_to t(:borrar), usuario_path, method: :delete, class: "btn btn-xs btn-danger my-2" %>
       <% end %>
     </ul>
   </div>
 </nav>
-
-<p>
-<%= t(:pelis_vistas) %> <%= Pelicula.joins(:lists).where("lists.usuario_id"=>@usuario.id).where("lists.nombre_lista" => "Vistos").count%>
-</p>
-<p>
-<%= t(:siguiendo) %> <%= Friendship.where("usuario_id" => @usuario.id).count %>
-</p>
-<p>
-<%= t(:seguidores) %> <%= Friendship.where("amigo_id" => @usuario.id).count %>
-</p>
+<h3 class="mt-3"><%=t(:estadisticas)%></h3>
+<div class="row mt-3 mx-1">
+<h5 class="col"><%= t(:pelis_vistas) %></h5>
+<h5 class="col"><%= t(:series_vistas) %></h5>
+<h5 class="col"><%= t(:siguiendo) %></h5>
+<h5 class="col"><%= t(:seguidores) %></h5>
+</div>
+<div class="row mx-2">
+<p class="col mx-3"><%= Pelicula.joins(:lists).where("peliculas.tipo"=>"pelicula").where("lists.usuario_id"=>@usuario.id).where("lists.nombre_lista" => "Vistos",).count%></p>
+<p class="col mx-3"><%= Pelicula.joins(:lists).where("peliculas.tipo"=>"serie").where("lists.usuario_id"=>@usuario.id).where("lists.nombre_lista" => "Vistos",).count%></p>
+<p class="col mx-3"><%= Friendship.where("usuario_id" => @usuario.id).count %></p>
+<p class="col mx-3"><%= Friendship.where("amigo_id" => @usuario.id).count %></p>
+</div>

@@ -1,4 +1,6 @@
 es:
+  editar: "Editar"
+  borrar: "Borrar"
   peliculas: "Películas"
   series: "Series"
   usuarios: "Usuarios"
@@ -52,6 +54,14 @@ es:
   plataformas: "Plataformas"
   elenco: "Elenco"
   no_provider: "No está disponible en ninguna plataforma"
+  estadisticas: "Estadísticas"
+  series_vistas: "Series vistas"
+  herramientas: "Herramientas usadas"
+  contacto: "Contacto"
+  pagina_realizada: "Página web realizada por"
+  anadir_a_lista: "Añadir a lista"
+  borrar_de_lista: "Borrar de lista"
+  crear_admin: "Crear usuario administrador"
 
   helpers:
     page_entries_info:

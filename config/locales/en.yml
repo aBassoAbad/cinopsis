@@ -30,6 +30,8 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
+  editar: "Edit"
+  borrar: "Delete"
   peliculas: "Movies"
   series: "TV Series"
   usuarios: "Users"
@@ -85,6 +87,14 @@ en:
   plataformas: "Providers"
   elenco: "Cast"
   no_provider: "Not available on any platform"
+  estadisticas: "statistics"
+  series_vistas: "Watched series"
+  herramientas: "Used tools"
+  contacto: "Contact"
+  pagina_realizada: "Website made by"
+  anadir_a_lista: "Add to list"
+  borrar_de_lista: "Delete from list"
+  crear_admin: "Create admin user"
 
   helpers:
     page_entries_info:

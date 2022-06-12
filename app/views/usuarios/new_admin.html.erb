@@ -1,4 +1,4 @@
-<%= render "shared/titulo_pagina", titulo: "Crear usuario administrador" %>
+<%= render "shared/titulo_pagina", titulo: t(:crear_admin) %>
 <div class="row">
   <div class="col-md-12">
     <%= form_for(@usuario, :html => {class: "form-horizontal", role: "form"}) do |f| %>
@@ -41,7 +41,7 @@
         </div>
       </div>
       <div class="form-group center">
-          <%= f.submit("Crear usuario administrador", class: "btn btn-primary btn-lg btn-xlarge") %>
+          <%= f.submit(t(:crear_admin), class: "btn btn-primary btn-lg btn-xlarge") %>
       </div>
     <% end %>
   </div>

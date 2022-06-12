@@ -24,7 +24,7 @@ Rails.application.routes.draw do
     end
   end
 
-  get '/amigos', to: 'friendships#index'
+  get '/amigos/:id', to: 'friendships#amigos', as: "amigos"
 
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
