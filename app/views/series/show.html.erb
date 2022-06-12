@@ -28,7 +28,8 @@
         <p><%=t(:no_provider)%></p>
         <% end
         %>
-        <h4 class="mt-4">Listas: </h4>
+        <% unless usuario_actual == nil %>
+          <h4 class="mt-4">Listas: </h4>
           <p>
           <% @listas.each do |lista|%>
             <span class="badge bg-secondary"><%= lista.nombre_lista %></span>
@@ -58,6 +59,7 @@
               <% end %>
             <% end %>
           </ul>
+        <% end %>
     </div>
 </div>
 <div class="mx-3">

@@ -1,6 +1,11 @@
 class SeriesController < ApplicationController
     def show
-        @listas_usuario = usuario_actual.lists
+        if logged_in?
+            @listas_usuario = usuario_actual.lists
+        else
+            @listas_usuario = {}
+            usuario_actual = nil
+        end
         @pelicula = Pelicula.find_by(id_tmdb: params[:id])
         if @pelicula
             @listas = @pelicula.lists.where(usuario_id: usuario_actual.id)
