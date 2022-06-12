@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   resources :peliculas
   get '/series', to: 'series#index'
   get '/series_show/:id', to: 'series#show', as: "series_show"
-  get '/buscar/:query', to: 'peliculas#buscar', as: "buscar"
+  get '/buscar/:query', to: 'buscar#buscar', as: "buscar"
   post '/anadir_a_lista', to: 'peliculas#anadir_a_lista'
   delete '/borrar_de_lista', to: 'peliculas#borrar_de_lista'
   post '/anadir_serie_a_lista', to: 'series#anadir_a_lista'

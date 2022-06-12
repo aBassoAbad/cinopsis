@@ -10,6 +10,6 @@ $(document).ready(function(){
     $("#buscar").on("click", function(event) {
         event.preventDefault();
         var texto = $("#buscar_text").val()
-        window.location.replace("http://127.0.0.1:3000/buscar/"+texto);
+        window.location.replace("/buscar/"+texto);
     })
 });
