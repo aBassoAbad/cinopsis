@@ -62,8 +62,8 @@ class UsuariosController < ApplicationController
             @usuario.admin = true
             @usuario.save
             @lista = List.create(nombre_lista: "Vistos", usuario_id: @usuario.id)
-            flash[:success] = t(:registro_correcto)
             redirect_to root_path
+            flash[:success] = t(:registro_correcto)
         else
             @usuario.errors.each do |msg|
                 flash[:danger] = msg.full_message
