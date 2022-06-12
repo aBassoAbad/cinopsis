@@ -1,6 +1,7 @@
 <%= render "shared/titulo_pagina", titulo: t(:usuarios) %>
-
-  <%= link_to "Crear usuario administrador", new_admin_path, class: "btn btn-xs btn-success mb-3" %></li>
+  <% if logged_in? && usuario_actual.admin %>
+    <%= link_to "Crear usuario administrador", new_admin_path, class: "btn btn-xs btn-success mb-3" %>
+  <% end %>
 <div class="center list-group">
   
   <% @usuarios.each do |usuario| %>

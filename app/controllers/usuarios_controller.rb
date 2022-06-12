@@ -1,6 +1,7 @@
 class UsuariosController < ApplicationController
     before_action :set_usuario, only:[:show, :edit, :update, :destroy]
     before_action :necesario_mismo_usuario_o_admin, only:[:edit, :update, :destroy]
+    before_action :necesario_admin, only:[:new_admin, :crear_admin]
     def new
         @usuario = Usuario.new
     end
@@ -89,7 +90,7 @@ class UsuariosController < ApplicationController
     end
 
     def necesario_admin
-        if logged_in? & !usuario_actual.admin?
+        unless logged_in? && usuario_actual.admin?
             flash[:danger] = t(:accion_invalidada)
             redirect_to root_path
         end
