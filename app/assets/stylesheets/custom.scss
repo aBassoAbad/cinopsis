@@ -143,3 +143,14 @@ footer{
     color: #DDD;
     border-radius: 10%;
 }
+
+@media only screen and (max-width: 800px) {
+    .caja{
+        display: block;
+        max-width: 100%;
+    }
+    .parent{
+        
+    flex-direction: column;
+    }
+  }
