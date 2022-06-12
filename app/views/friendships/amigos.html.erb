@@ -5,7 +5,9 @@
       <div class="row">
         <%= link_to amigo.nombre.capitalize, usuario_path(amigo) %></li>
         <div>
-          <%= button_to t(:borrar_amigos), borrar_amigos_usuario_path(amigo), method: :delete, class: "btn btn-xs btn-danger" %>
+          <% if logged_in? && (usuario_actual == @usuario || usuario_actual.admin?)%>
+            <%= button_to t(:borrar_amigos), borrar_amigos_usuario_path(amigo), method: :delete, class: "btn btn-xs btn-danger" %>
+          <% end %>
         </div>
       </div>
     </ul>      

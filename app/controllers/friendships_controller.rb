@@ -1,5 +1,6 @@
 class FriendshipsController < ApplicationController
     protect_from_forgery with: :exception
+    before_action :necesario_mismo_usuario_o_admin, only:[:destroy]
 
     def create
         if params.include?(:amigo_id) 
@@ -18,6 +19,16 @@ class FriendshipsController < ApplicationController
     end
 
     def amigos
+      @usuario = Usuario.find(params[:id])
       @amigos = Usuario.find(params[:id]).amigos     
     end
+
+    private
+
+    def necesario_mismo_usuario_o_admin
+      unless logged_in? && (usuario_actual == @usuario || usuario_actual.admin?)
+          flash[:danger] = t(:accion_invalidada)
+          redirect_to usuarios_path
+      end
+  end
 end
