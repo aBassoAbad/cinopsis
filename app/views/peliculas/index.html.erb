@@ -16,7 +16,11 @@ paginas = 1
             <% primeras = populares.first(6)%>
             <% primeras.each do |pelicula| %>
               <%populares.shift
-              @sprite = "https://image.tmdb.org/t/p/w500/#{pelicula["poster_path"]}"
+              if pelicula["poster_path"] != nil
+                @sprite = "https://image.tmdb.org/t/p/w500/#{pelicula["poster_path"]}"
+              else
+                @sprite = asset_path('movie.png')
+              end
                 %>
               <div class="col-md-2">
                 <div class="card mb-2">
@@ -50,8 +54,11 @@ paginas = 1
               <% primeras = populares.first(6)%>
               <% primeras.each do |pelicula| 
                 populares.shift
-              @sprite = "https://image.tmdb.org/t/p/w500/#{pelicula["poster_path"]}"
-                %>
+                if pelicula["poster_path"] != nil
+                  @sprite = "https://image.tmdb.org/t/p/w500/#{pelicula["poster_path"]}"
+                else
+                  @sprite = asset_path('movie.png')
+                end %>
                 <div class="col-md-2">
                   <div class="card mb-2">
                     <%= link_to pelicula_path(pelicula["id"]) do %>
@@ -93,7 +100,11 @@ paginas = 1
             <% primeras = mejor_valoradas.first(6)%>
             <% primeras.each do |pelicula| %>
               <%mejor_valoradas.shift
-              @sprite = "https://image.tmdb.org/t/p/w500/#{pelicula["poster_path"]}"
+              if pelicula["poster_path"] != nil
+                @sprite = "https://image.tmdb.org/t/p/w500/#{pelicula["poster_path"]}"
+              else
+                @sprite = asset_path('movie.png')
+              end
                 %>
               <div class="col-md-2">
                 <div class="card mb-2">
@@ -127,7 +138,11 @@ paginas = 1
               <% primeras = mejor_valoradas.first(6)%>
               <% primeras.each do |pelicula| 
                 mejor_valoradas.shift
-              @sprite = "https://image.tmdb.org/t/p/w500/#{pelicula["poster_path"]}"
+                if pelicula["poster_path"] != nil
+                  @sprite = "https://image.tmdb.org/t/p/w500/#{pelicula["poster_path"]}"
+                else
+                  @sprite = asset_path('movie.png')
+                end
                 %>
                 <div class="col-md-2">
                   <div class="card mb-2">

@@ -25,7 +25,11 @@
               </ul>
           </li>
       </ul>
+      <% if params[:query] %>
+      <form id="formulario_buscar" class="d-flex me-auto" action="/buscar/<%= params[:query]%>">
+      <% else %>
       <form id="formulario_buscar" class="d-flex me-auto">
+      <% end %>
         <input id="buscar_text" class="form-control" type="search" placeholder="<%=t(:buscar)%>" aria-label="Search">
         <input id="buscar" type="submit" value="<%=t(:buscar)%>">
       </form>

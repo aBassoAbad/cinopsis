@@ -9,6 +9,8 @@ body{
 img{
     height: auto;
     width: auto;
+    min-height: 250px;
+    background-color: #ddd;
 }
 a{
     color: black;
@@ -76,6 +78,8 @@ a{
     margin-left: 10px;
     height: 30px;
     width: 30px;
+    min-height: 0;
+    background-color: white;
 }
 
 .fixed{

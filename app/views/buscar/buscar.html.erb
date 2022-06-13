@@ -14,7 +14,11 @@ paginas = 1
             <% primeras = @peliculas.first(6)%>
             <% primeras.each do |pelicula| %>
               <% @peliculas.shift
-              @sprite = "https://image.tmdb.org/t/p/w500/#{pelicula["poster_path"]}"
+              if pelicula["poster_path"] != nil
+                @sprite = "https://image.tmdb.org/t/p/w500/#{pelicula["poster_path"]}"
+              else
+                @sprite = asset_path('movie.png')
+              end
                 %>
               <div class="col-md-2">
                 <div class="card mb-2">
@@ -48,7 +52,11 @@ paginas = 1
               <% primeras = @peliculas.first(6)%>
               <% primeras.each do |pelicula| 
                 @peliculas.shift
-              @sprite = "https://image.tmdb.org/t/p/w500/#{pelicula["poster_path"]}"
+                if pelicula["poster_path"] != nil
+                  @sprite = "https://image.tmdb.org/t/p/w500/#{pelicula["poster_path"]}"
+                else
+                  @sprite = asset_path('movie.png')
+                end
                 %>
                 <div class="col-md-2">
                   <div class="card mb-2">
@@ -80,7 +88,7 @@ paginas = 1
     </div>
 
     <h4><%=t(:series)%></h4>
-    <div id="carousel1" class="carousel carousel-dark slide" data-bs-interval="false">
+    <div id="carousel2" class="carousel carousel-dark slide" data-bs-interval="false">
       <div class="carousel-inner">
 
         <!--Primer item del slider-->
@@ -89,11 +97,15 @@ paginas = 1
             <% primeras = @series.first(6)%>
             <% primeras.each do |pelicula| %>
               <% @series.shift
-              @sprite = "https://image.tmdb.org/t/p/w500/#{pelicula["poster_path"]}"
+              if pelicula["poster_path"] != nil
+                @sprite = "https://image.tmdb.org/t/p/w500/#{pelicula["poster_path"]}"
+              else
+                @sprite = asset_path('movie.png')
+              end
                 %>
               <div class="col-md-2">
                 <div class="card mb-2">
-                  <%= link_to pelicula_path(pelicula["id"]) do %>
+                  <%= link_to series_show_path(pelicula["id"]) do %>
                     <% params[:parametro] = pelicula["id"]%>
                     <%= image_tag url_for(@sprite), class: "card-img-top" %>
                   <% end %>
@@ -113,7 +125,7 @@ paginas = 1
         <% 
         if @series.length() < 6 && paginas < 3
           paginas = paginas+1
-          response = RestClient.get("https://api.themoviedb.org/3/movie/popular?api_key=54e1519f91f40d97ec2abbdf458545ac&language=es-ES&page=#{paginas}")
+          response = RestClient.get("https://api.themoviedb.org/3/tv/popular?api_key=54e1519f91f40d97ec2abbdf458545ac&language=es-ES&page=#{paginas}")
           series = JSON.parse(response)
           @series += series["results"]
         end
@@ -123,11 +135,15 @@ paginas = 1
               <% primeras = @series.first(6)%>
               <% primeras.each do |pelicula| 
                 @series.shift
-              @sprite = "https://image.tmdb.org/t/p/w500/#{pelicula["poster_path"]}"
+                if pelicula["poster_path"] != nil
+                  @sprite = "https://image.tmdb.org/t/p/w500/#{pelicula["poster_path"]}"
+                else
+                  @sprite = asset_path('movie.png')
+                end
                 %>
                 <div class="col-md-2">
                   <div class="card mb-2">
-                    <%= link_to pelicula_path(pelicula["id"]) do %>
+                    <%= link_to series_show_path(pelicula["id"]) do %>
                       <% params[:parametro] = pelicula["id"]%>
                       <%= image_tag url_for(@sprite), class: "card-img-top" %>
                     <% end %>
@@ -144,11 +160,11 @@ paginas = 1
 
       </div>
       <!--Controles del slider-->
-      <button class="carousel-control-prev" type="button" data-bs-target="#carousel1" data-bs-slide="prev">
+      <button class="carousel-control-prev" type="button" data-bs-target="#carousel2" data-bs-slide="prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
         <span class="visually-hidden">Previous</span>
       </button>
-      <button class="carousel-control-next" type="button" data-bs-target="#carousel1" data-bs-slide="next">
+      <button class="carousel-control-next" type="button" data-bs-target="#carousel2" data-bs-slide="next">
         <span class="carousel-control-next-icon" aria-hidden="true"></span>
         <span class="visually-hidden">Next</span>
       </button>
