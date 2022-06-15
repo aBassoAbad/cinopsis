@@ -95,6 +95,8 @@ en:
   anadir_a_lista: "Add to list"
   borrar_de_lista: "Delete from list"
   crear_admin: "Create admin user"
+  dar_admin: "Give admin permissions"
+  quitar_admin: Remove admin permissions"
 
   helpers:
     page_entries_info:

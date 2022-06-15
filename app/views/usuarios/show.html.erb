@@ -32,13 +32,13 @@
       <% if logged_in? && (usuario_actual != @usuario || usuario_actual.admin?) && !@usuario.admin%>
         <%= button_to hacer_admin_path(params[:id]), method: :patch, class:"btn btn-xs btn-success my-2 mx-2" do%>
           <% params["id_user"] = params[:id]%>
-          Dar admin
+          <%=t(:dar_admin)%>
         <% end %>
       <% end %>
        <% if logged_in? && (usuario_actual != @usuario || usuario_actual.admin?) && @usuario.admin%>
         <%= button_to quitar_admin_path(params[:id]), method: :patch, class:"btn btn-xs btn-danger my-2 mx-2" do%>
           <% params["id_user"] = params[:id]%>
-          Quitar admin
+          <%=t(:quitar_admin)%>
         <% end %>
       <% end %>
     </ul>

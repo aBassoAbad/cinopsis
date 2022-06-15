@@ -62,6 +62,8 @@ es:
   anadir_a_lista: "Añadir a lista"
   borrar_de_lista: "Borrar de lista"
   crear_admin: "Crear usuario administrador"
+  dar_admin: "Dar permisos de administrador"
+  quitar_admin: "Quitar permisos de administrador"
 
   helpers:
     page_entries_info:
