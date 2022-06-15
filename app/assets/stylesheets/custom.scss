@@ -10,7 +10,20 @@ img{
     height: auto;
     width: auto;
     min-height: 250px;
-    background-color: #ddd;
+    background-color: transparent;
+}
+
+.logo{
+    background-color: #DDD;
+    padding: 4px;
+    border-radius: 20%;
+}
+
+.logo img{
+    width: 50px;
+    height: 50px;
+    min-height: 0px;
+    background-color: transparent;
 }
 a{
     color: black;
@@ -31,47 +44,12 @@ a{
     float:right
 }
 
-.pagination a, .pagination span.current, .pagination span.gap {
-    float: left;
-    padding: 0 14px;
-    line-height: 38px;
-    text-decoration: none;
-    background-color: white;
-    border: 1px solid #DDD;
-    border-left-width: 0;
-    color: #142b14;
-}
-
-  .pagination {
-    border-left: 1px solid #ddd;
-  }
-    .pagination .first{
-        padding : 0;
-        float: none;
-        border: none;
-    }
-    .pagination .prev {
-        padding : 0;
-        float: none;
-        border: none;
-    }
-    .pagination .page{
-        padding : 0;
-        float: none;
-        border: none;
-    }
-    .pagination .next{
-        padding : 0;
-        float: none;
-        border: none;
-    }
-    .pagination .last{
-        padding : 0;
-        float: none;
-        border: none;
-    }
 .nav-item{
     font-size: 20px;
+}
+
+.nav-item a:hover{
+    color: black;
 }
 
 .bandera{
@@ -79,7 +57,6 @@ a{
     height: 30px;
     width: 30px;
     min-height: 0;
-    background-color: white;
 }
 
 .fixed{

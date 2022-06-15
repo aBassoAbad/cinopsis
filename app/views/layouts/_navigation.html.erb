@@ -1,5 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark ps-5 fixed">
   <div class="container-fluid ms-5">
+  <span class="logo"> <%= link_to image_tag(asset_path('logo.png'), class: "logo"), root_path%></span>
     <%= link_to 'CINOPSIS', root_path, class: "navbar-brand ms-5" %>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -20,8 +21,8 @@
               <%= t(:idioma) %>
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <span class="dropdown-item"><%= t(:espanol) %> <%= link_to image_tag(asset_path('iconos/spain.png'), class: "bandera"), {:locale => 'es'}%></span>
-              <span class="dropdown-item"><%= t(:ingles) %> <%= link_to image_tag(asset_path('iconos/united-kingdom.png'), class: "bandera"), {:locale => 'en'}%></span>
+              <span class="dropdown-item"><%= link_to t(:espanol), {:locale => 'es'} %> <%= link_to image_tag(asset_path('iconos/spain.png'), class: "bandera"), {:locale => 'es'}%></span>
+              <span class="dropdown-item"><%= link_to t(:ingles), {:locale => 'en'} %> <%= link_to image_tag(asset_path('iconos/united-kingdom.png'), class: "bandera"), {:locale => 'en'}%></span>
               </ul>
           </li>
       </ul>
