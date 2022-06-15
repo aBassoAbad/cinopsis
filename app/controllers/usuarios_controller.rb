@@ -72,6 +72,24 @@ class UsuariosController < ApplicationController
         end
     end
 
+    def hacer_admin
+        @usuario = Usuario.find(params["id"])
+        if @usuario
+            @usuario.admin = true
+            @usuario.save
+        end
+        redirect_back(fallback_location: root_path)
+    end
+
+    def quitar_admin
+        @usuario = Usuario.find(params["id"])
+        if @usuario
+            @usuario.admin = false
+            @usuario.save
+        end
+        redirect_back(fallback_location: root_path)
+    end
+
     private 
     
     def usuario_params

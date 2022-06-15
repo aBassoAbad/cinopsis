@@ -16,6 +16,8 @@ Rails.application.routes.draw do
   delete '/borrar_de_lista', to: 'peliculas#borrar_de_lista'
   post '/anadir_serie_a_lista', to: 'series#anadir_a_lista'
   delete '/borrar_serie_de_lista', to: 'series#borrar_de_lista'
+  patch '/hacer_admin/:id', to: 'usuarios#hacer_admin', as: "hacer_admin"
+  patch '/quitar_admin/:id', to: 'usuarios#quitar_admin', as: "quitar_admin"
   resources :usuarios, except: [:new]
   resources :usuarios do
     member do 

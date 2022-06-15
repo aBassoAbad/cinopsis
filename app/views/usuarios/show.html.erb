@@ -1,5 +1,8 @@
-<%= render "shared/titulo_pagina", titulo: @usuario.nombre %>
-
+<h1 class="center titulo"><%= @usuario.nombre.capitalize %>
+<%if @usuario.admin %>
+  <span class="badge bg-secondary admin-tag">Admin</span>
+  <% end %></h1>
+<hr/>
 <nav class="navbar navbar-expand-lg navbar-light bg-light ps-5">
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav">
@@ -25,6 +28,18 @@
       <% if logged_in? && (usuario_actual == @usuario || usuario_actual.admin?)%>
         <%= link_to t(:editar), edit_usuario_path, class: "btn btn-xs btn-warning mx-2 my-2" %>
         <%= button_to t(:borrar), usuario_path, method: :delete, class: "btn btn-xs btn-danger my-2" %>
+      <% end %>
+      <% if logged_in? && (usuario_actual != @usuario || usuario_actual.admin?) && !@usuario.admin%>
+        <%= button_to hacer_admin_path(params[:id]), method: :patch, class:"btn btn-xs btn-success my-2 mx-2" do%>
+          <% params["id_user"] = params[:id]%>
+          Dar admin
+        <% end %>
+      <% end %>
+       <% if logged_in? && (usuario_actual != @usuario || usuario_actual.admin?) && @usuario.admin%>
+        <%= button_to quitar_admin_path(params[:id]), method: :patch, class:"btn btn-xs btn-danger my-2 mx-2" do%>
+          <% params["id_user"] = params[:id]%>
+          Quitar admin
+        <% end %>
       <% end %>
     </ul>
   </div>
