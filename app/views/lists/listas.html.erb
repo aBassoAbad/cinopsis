@@ -1,5 +1,7 @@
 <%= render "shared/titulo_pagina", titulo: t(:listas) %>
+<% if logged_in? && params[:id] == usuario_actual.id%>
 <%= link_to t(:crear_lista), new_list_path(), class: "btn btn-xs btn-primary" %>
+<% end %>
 <div class="center list-group">
   <% @listas.each do |lista| %>
     <ul class=" listing">
